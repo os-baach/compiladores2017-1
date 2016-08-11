@@ -1,0 +1,1 @@
+2. El comando para regresar al commit 911e8c9 es git reset 911e8c9
