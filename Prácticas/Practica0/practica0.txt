@@ -1,5 +1,0 @@
-1.Toma el identificador del árbol fuente, el padre del commit, la información del autor,la información del que realiza el commit y el mensaje del commit, con esto realiza un hash y produce el identificador de 40 dígitos
-2. El comando para regresar al commit 911e8c9 es git reset 911e8c9 o git checkout 911e8c9
-3. Una rama es una versión paralela del repositorio la cual usamos para no afectar al directorio principal como la master.
-git branch nos sirve para ver las ramas y para borrar algunas.
-git merge sirve para unir dos ramas y crear sólo una de ellas.
