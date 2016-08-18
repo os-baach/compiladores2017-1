@@ -1,0 +1,1 @@
+3. Primero se construye el AFN por medio de la construcción de Thompson. Luego usamos el algoritmo de los subconjuntos para pasar de AFN a AFD. Por último, minimizamos nuestro AFD mediante el algoritmo de minimización (los algoritmos fueron vistos en clase).
