@@ -1,0 +1,16 @@
+Archivo: analizador.flex
+
+Análisis del código:
+
+EL programa genera una clase llamada Flexer que es la clase donde
+se genera el DFA (autómata de estados finitos determinista) que nos
+sirve para saber cuando una expresión se encuentra aceptado en el
+lenguaje que el código analizador.flex acepte.
+
+El código incluye una cantidad de consecuencias para estados de
+errores y finales. Para mantener la linealidad de la búsqueda de
+patrones, se genera un único DFA y nunca retrocede durante la
+búsqueda de los tokens léxicos. El el peor de los casos y como Flex
+siempre trata de dar "la mordida más grande" tendrá que retorceder
+hasta el patrón apropiado más chico pero nunca hacia un estado
+anterior.
