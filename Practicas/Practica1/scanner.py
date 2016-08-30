@@ -31,24 +31,23 @@ failed = {}
 
 # Obtiene la siguiente palabra valida(?)
 # entrada - la entrada a analizar
-def siguiente_palabra(entrada):
+# cadena - la cadena total a analizar
+def siguiente_palabra(entrada, cadena):
     global stack
     global inputpos
     global failed
-    inputpos = 0
-    for i in range(ESTADOS): 
-        for j in range(len(entrada) + 1):
-            failed[('s' + str(i), j)] = False # Ningún estado ha fallado
-    failed = defaultdict(lambda: True, failed)
+    inicial = inputpos if inputpos != 0 else 0 
     entrada += ' '
+    # Vaciamos el stack
     stack = []            
     estado = 's0' # Estado en el que estamos
     lexema = '' # Palabra leída hasta el momento
-    # Vaciamos el stack
+    iterador = 0 # Iterador de caracteres en la cadena
     # -1 representa error:
     stack.append(('bad', -1)) # Supongo que este paso es por si falla todo
     while estado is not 'se':
-        sig = entrada[inputpos] # Siguiente caracter a leer
+        sig = entrada[iterador] # Siguiente caracter a leer
+        iterador += 1
         inputpos += 1
         lexema += sig
         if failed[(estado, inputpos)]:
@@ -58,15 +57,15 @@ def siguiente_palabra(entrada):
         stack.append((estado, inputpos))
         categoria = CATEGORIAS[sig] # Categoria del ultimo caracter leido
         estado = TRANSICIONES[(estado, categoria)]
-    siguiente = entrada[inputpos:]
+    siguiente = entrada[iterador:]
     while estado != 'bad' and TYPE[estado] == 'invalid':
         failed[(estado, inputpos)] = True
         tupla = stack.pop()
         estado = tupla[0]
         inputpos = tupla[1]
-        inputpos -= 1 # Según yo esto simula Rollback
-        lexema = lexema[:inputpos]
-        siguiente = entrada[inputpos:]
+        lexema = cadena[inicial:inputpos-1]
+        siguiente = cadena[inputpos-1:]
+        inputpos -= 1
     if TYPE[estado] != 'invalid':
         print('Prefijo reconocido: ' + lexema)
         print('Tipo del lexema: ' + TYPE[estado])
@@ -79,7 +78,18 @@ def siguiente_palabra(entrada):
         return ''
         
 def reconoce(palabra):
+    # Inicialización
+    global inputpos
+    global failed
+    inputpos = 0
+    copia = palabra[:]
+    for i in range(ESTADOS): 
+        for j in range(len(palabra) + 1):
+            failed[('s' + str(i), j)] = False # Ningún estado ha fallado
+    failed = defaultdict(lambda: False, failed)
+    # Lectura de palabras
     while len(palabra) > 0:
-        palabra = siguiente_palabra(palabra)
-        
+        palabra = siguiente_palabra(palabra, copia)
+
+# "Main"
 reconoce(input("Escriba la palabra a analizar\n"))
