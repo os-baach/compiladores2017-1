@@ -5,9 +5,6 @@ from collections import defaultdict
 global CATEGORIAS
 global TRANSICIONES
 global TYPE
-global INPUTPOS
-global FAILED
-global STACK
 global ESTADOS
 
 ESTADOS = 7
