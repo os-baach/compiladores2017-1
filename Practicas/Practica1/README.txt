@@ -31,3 +31,6 @@ búsqueda de los tokens léxicos. El el peor de los casos y como Flex
 siempre trata de dar "la mordida más grande" tendrá que retorceder
 hasta el patrón apropiado más chico pero nunca hacia un estado
 anterior.
+
+4.- El tipo de implemetación que genera JFlex es guiado por tablas, ya que toma como entrada un archivo con expresiones regulares y se especifican las cadenas que serán aceptadas y como salída nos da un programa que recibe un archivo .txt, lo que hace es comparar las cadenas de ese archivo con lo que tiene guardado el programa, en el se guardan tablas que nos índica los simbolos que son válidos y ve que si correspondan con las expresiones regulares que fueron definidas.
+Entonces JFlex genera en su programa tablas para guardar los simbolos, expresiones regulares y cadenas que son aceptadas.
