@@ -34,17 +34,19 @@ import java.util.Arrays;
 
 LETRA = [a-zA-Z]
 DIGITO = [0-9]
-OPERADOR = "=" | ">" | "<" | "!" | "-" | "+" | "/" | "%" | "(" | ")" | "'" | ":" | ";" 
+OPERADOR = "=" | ">" | "<" | "!" | "-" | "+" | "/" | "%" | "(" | ")" | "'" | ":" | "\""
 CARACTER_VALIDO = {LETRA} | {DIGITO} | {OPERADOR} | _
+CADENA_VALIDA = {CARACTER_VALIDO}+ ({CARACTER_VALIDO} | " " | \t)*
 NEWLINE = [\r|\n|\r\n]
+WHITESPACE = {NEWLINE} | [ \t\f]
 
 %%
 
 <YYINITIAL>{
 {NEWLINE} {System.out.println("NEWLINE");}
-{CARACTER_VALIDO} {if(yycolumn > peek()){
+{CADENA_VALIDA} {if((yycolumn-1) > peek()){
 		       push(yycolumn);
-		       System.out.print("INDENT(" + yycolumn + ")");
+		       System.out.print("INDENT(" + (yycolumn) + ")");
 		       }
 		   else if(yycolumn < peek()){
 		       pop();
@@ -52,5 +54,6 @@ NEWLINE = [\r|\n|\r\n]
 		       System.out.println("DEDENT");
 		   }
 		}
+{WHITESPACE} {/* Lo ignora */}
 }
 
