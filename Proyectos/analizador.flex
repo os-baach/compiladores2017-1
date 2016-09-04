@@ -10,8 +10,19 @@ import java.util.Arrays;
 %column
 
 %{
-  public Stack<Integer> s;
+  private Stack<Integer> s;
+  private int whitespace;
 
+  /* Incrementa blancos en i */
+  public void incrementa(int i){
+      whitespace+=i;
+  }
+
+  /* Vuelve 0 a los blancos */
+  public void clearWhitespace(){
+      whitespace = 0;
+  } 
+	
   public int peek(){
     return s.peek();
   }
@@ -30,30 +41,32 @@ import java.util.Arrays;
 %init{
   s = new Stack<>();
   s.push(0);
+  whitespace = 0;
 %init}
 
 LETRA = [a-zA-Z]
 DIGITO = [0-9]
 OPERADOR = "=" | ">" | "<" | "!" | "-" | "+" | "/" | "%" | "(" | ")" | "'" | ":" | "\""
 CARACTER_VALIDO = {LETRA} | {DIGITO} | {OPERADOR} | _
-CADENA_VALIDA = {CARACTER_VALIDO}+ ({CARACTER_VALIDO} | " " | \t)*
 NEWLINE = [\r|\n|\r\n]
-WHITESPACE = {NEWLINE} | [ \t\f]
+ESPACIO = " "
+TAB = "\t"
+WHITESPACE = {ESPACIO} | {TAB}
+CADENA_VALIDA = {CARACTER_VALIDO}+ ({CARACTER_VALIDO} | {WHITESPACE})*
 
 %%
 
-<YYINITIAL>{
-{NEWLINE} {System.out.println("NEWLINE");}
-{CADENA_VALIDA} {if((yycolumn-1) > peek()){
-		       push(yycolumn);
-		       System.out.print("INDENT(" + (yycolumn) + ")");
+{NEWLINE} {System.out.println("NEWLINE"); clearWhitespace();}
+{ESPACIO} {incrementa(1);}
+{TAB} {incrementa(4);}
+{CADENA_VALIDA} {if((whitespace) > peek()){
+		       push(whitespace);
+		       System.out.print("INDENT(" + (whitespace) + ")");
 		       }
-		   else if(yycolumn < peek()){
+		   else if(whitespace < peek()){
 		       pop();
 		       yypushback(yylength());
 		       System.out.println("DEDENT");
 		   }
 		}
-{WHITESPACE} {/* Lo ignora */}
-}
 

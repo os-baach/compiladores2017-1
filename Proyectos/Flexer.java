@@ -34,10 +34,10 @@ public class Flexer {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\11\0\1\2\1\3\1\0\1\4\1\3\22\0\1\2\1\1\1\1"+
-    "\2\0\1\1\1\0\1\1\1\1\1\1\1\0\1\1\1\0\1\1"+
-    "\1\0\1\1\12\1\1\1\1\0\1\1\1\1\1\1\2\0\32\1"+
-    "\4\0\1\1\1\0\32\1\1\0\1\3\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff93\0";
+    "\11\0\1\4\1\2\2\0\1\2\22\0\1\3\1\1\1\1\2\0"+
+    "\1\1\1\0\1\1\1\1\1\1\1\0\1\1\1\0\1\1\1\0"+
+    "\1\1\12\1\1\1\1\0\1\1\1\1\1\1\2\0\32\1\4\0"+
+    "\1\1\1\0\32\1\1\0\1\2\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff93\0";
 
   /** 
    * Translates characters to character classes
@@ -50,10 +50,10 @@ public class Flexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\4";
+    "\1\0\1\1\1\2\1\3\1\4\1\5";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[5];
+    int [] result = new int[6];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -78,10 +78,10 @@ public class Flexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\5\0\12\0\5\0\5";
+    "\0\0\0\5\0\12\0\5\0\5\0\5";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[5];
+    int [] result = new int[6];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -104,7 +104,8 @@ public class Flexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\1\5\1\4\6\0\2\3\2\0";
+    "\1\2\1\3\1\4\1\5\1\6\6\0\1\3\1\0"+
+    "\2\3";
 
   private static int [] zzUnpackTrans() {
     int [] result = new int[15];
@@ -145,10 +146,10 @@ public class Flexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\1\1\2\11";
+    "\1\0\1\11\1\1\3\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[5];
+    int [] result = new int[6];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -224,8 +225,19 @@ public class Flexer {
   private int zzFinalHighSurrogate = 0;
 
   /* user code: */
-  public Stack<Integer> s;
+  private Stack<Integer> s;
+  private int whitespace;
 
+  /* Incrementa blancos en i */
+  public void incrementa(int i){
+      whitespace+=i;
+  }
+
+  /* Vuelve 0 a los blancos */
+  public void clearWhitespace(){
+      whitespace = 0;
+  } 
+	
   public int peek(){
     return s.peek();
   }
@@ -248,6 +260,7 @@ public class Flexer {
   public Flexer(java.io.Reader in) {
     s = new Stack<>();
   s.push(0);
+  whitespace = 0;
     this.zzReader = in;
   }
 
@@ -262,7 +275,7 @@ public class Flexer {
     char [] map = new char[0x110000];
     int i = 0;  /* index in packed string  */
     int j = 0;  /* index in unpacked array */
-    while (i < 106) {
+    while (i < 104) {
       int  count = packed.charAt(i++);
       char value = packed.charAt(i++);
       do map[j++] = value; while (--count > 0);
@@ -615,27 +628,31 @@ public class Flexer {
           case 1: 
             { System.out.print(yytext());
             }
-          case 5: break;
+          case 6: break;
           case 2: 
-            { if((yycolumn-1) > peek()){
-		       push(yycolumn);
-		       System.out.print("INDENT(" + (yycolumn) + ")");
+            { if((whitespace) > peek()){
+		       push(whitespace);
+		       System.out.print("INDENT(" + (whitespace) + ")");
 		       }
-		   else if(yycolumn < peek()){
+		   else if(whitespace < peek()){
 		       pop();
 		       yypushback(yylength());
 		       System.out.println("DEDENT");
 		   }
             }
-          case 6: break;
-          case 3: 
-            { /* Lo ignora */
-            }
           case 7: break;
-          case 4: 
-            { System.out.println("NEWLINE");
+          case 3: 
+            { System.out.println("NEWLINE"); clearWhitespace();
             }
           case 8: break;
+          case 4: 
+            { incrementa(1);
+            }
+          case 9: break;
+          case 5: 
+            { incrementa(4);
+            }
+          case 10: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
