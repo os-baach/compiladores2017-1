@@ -518,12 +518,10 @@ public class Flexer {
         case '\u2028':
         case '\u2029':
           yyline++;
-          yycolumn = 0;
           zzR = false;
           break;
         case '\r':
           yyline++;
-          yycolumn = 0;
           zzR = true;
           break;
         case '\n':
@@ -531,12 +529,10 @@ public class Flexer {
             zzR = false;
           else {
             yyline++;
-            yycolumn = 0;
           }
           break;
         default:
           zzR = false;
-          yycolumn += zzCharCount;
         }
       }
 
@@ -630,12 +626,16 @@ public class Flexer {
             }
           case 6: break;
           case 2: 
-            { if((whitespace) > peek()){
+            { if(whitespace > peek()){
 		       push(whitespace);
 		       System.out.print("INDENT(" + (whitespace) + ")");
 		       }
 		   else if(whitespace < peek()){
 		       pop();
+		       if(whitespace > peek()){
+		           System.err.println("Error de indentación. Línea " + (yyline+1) + ".");
+			   System.exit(-1);
+		       }
 		       yypushback(yylength());
 		       System.out.println("DEDENT");
 		   }

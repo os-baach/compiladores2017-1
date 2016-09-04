@@ -7,7 +7,6 @@ import java.util.Arrays;
 %class Flexer
 %standalone
 %line
-%column
 
 %{
   private Stack<Integer> s;
@@ -59,12 +58,16 @@ CADENA_VALIDA = {CARACTER_VALIDO}+ ({CARACTER_VALIDO} | {WHITESPACE})*
 {NEWLINE} {System.out.println("NEWLINE"); clearWhitespace();}
 {ESPACIO} {incrementa(1);}
 {TAB} {incrementa(4);}
-{CADENA_VALIDA} {if((whitespace) > peek()){
+{CADENA_VALIDA} {if(whitespace > peek()){
 		       push(whitespace);
 		       System.out.print("INDENT(" + (whitespace) + ")");
 		       }
 		   else if(whitespace < peek()){
 		       pop();
+		       if(whitespace > peek()){
+		           System.err.println("Error de indentación. Línea " + (yyline+1) + ".");
+			   System.exit(-1);
+		       }
 		       yypushback(yylength());
 		       System.out.println("DEDENT");
 		   }
