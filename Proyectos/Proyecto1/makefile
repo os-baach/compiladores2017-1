@@ -1,4 +1,4 @@
 #/bin/bash
 tokens:
-	jflex analizador.flex
+	jflex Flex.flex
 	javac Flexer.java
