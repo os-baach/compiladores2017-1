@@ -80,7 +80,7 @@ import java.util.Arrays;
 
 LETRA = [a-zA-Z]
 DIGITO = [0-9]
-NEWLINE = [\r|\n|\r\n]
+NEWLINE = [\r|\n|\r\n] 
 ESPACIO = " "
 TAB = "\t"
 IDENTIFICADOR = ({LETRA} | _) ({LETRA} | {DIGITO} | _)*
@@ -91,10 +91,15 @@ KEYWORD = "and" | "or" | "not" | "for" | "while" | "if" | "else" | "elif" | "pri
 BOOLEANO = "True" | "False"
 CADENA = "\""{CARACTER_VALIDO}*"\""
 OPERADOR = "+" | "-" | "*" | "**" | "/" | "//" | "%" | ">" | "<" | "<=" | ">=" | "==" | "!=" | "-=" | "+=" | "="
-SEPARADOR = "(" | ")" | ":" | ";" 
+SEPARADOR = "(" | ")" | ":" | ";"
+TODOS_CARACTERES = [^\r\n]
+COMENTARIO = "#" {TODOS_CARACTERES}* {NEWLINE}? 
 
 %%
 
+{COMENTARIO} {if(!linestart){
+		System.out.println("NEWLINE"); clearWhitespace(); linestart=true; espacio = false;
+	     }}
 {SEPARADOR} {
 	if(linestart)
 	cuentaIndentacion();
@@ -107,7 +112,6 @@ SEPARADOR = "(" | ")" | ":" | ";"
 	System.out.print("OPERADOR(" + yytext() + ")");
 	espacio=false;
 	}
-
 {NEWLINE} {System.out.println("NEWLINE"); clearWhitespace(); linestart=true; espacio = false;}
 {ESPACIO} {if(linestart)
 		incrementa(1); espacio = false;}
@@ -162,7 +166,7 @@ SEPARADOR = "(" | ")" | ":" | ";"
 	  System.exit(-1);
        }
        if(linestart)
-		     cuentaIndentacion();
+		 cuentaIndentacion();
 		 System.out.print("REAL(" + yytext() + ")");
 		 espacio = true;}
 
