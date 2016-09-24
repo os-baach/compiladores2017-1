@@ -3,7 +3,7 @@
 >> <b>R=</b>Codificado a mano, de descenso recursivo, y generados automáticamente. Los generados automáticamente pueden ser guiados por tablas o codificados directamente.
 
 > <b>2.¿Qué características debe de cumplir una gramática libre de contexto para que pueda tener un reconocedor descendente recursivo sin caer en ciclos ni hacer backtrack?</b>
->> <b>R=</b>Ser "backtrack-free" o LL(1).
+>> <b>R=</b>Ser "backtrack-free" o LL(k).
 
 > <b>Respuesta 3 del ejercicio 2
 >    3.¿Qué resultado da la evaluación de la expresión 3-2+8? Explica el motivo de los resultados </b>
