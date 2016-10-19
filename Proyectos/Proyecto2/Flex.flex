@@ -7,86 +7,86 @@ import java.util.Arrays;
 %class Flexer
 %byaccj
 %line
-%state INDENT CADENA DEDENT NORMAL EOF
+%state CONTADOR INDENT CADENA DEDENT NORMAL EOF
 %unicode
 
 %{
-  private static final int TABULADOR = 4; /* Número de espacios por tabulador */
-  private Stack<Integer> s;
-  private int whitespace;
-  private boolean espacio; /* Nos dice si la siguiente cadena debe ser un espacio */
-  private boolean linestart; /* Nos dice si no hemos leído cadenas válidas en la línea */
-  private int dedents = 0; /* Contador de DEDENTS */
-  private boolean indent = false; /* Nos dice si hubo INDENT */
+private static final int TABULADOR = 4; /* Número de espacios por tabulador */
+private Stack<Integer> s;
+private int whitespace;
+private boolean espacio; /* Nos dice si la siguiente cadena debe ser un espacio */
+private boolean linestart; /* Nos dice si no hemos leído cadenas válidas en la línea */
+private int dedents = 0; /* Contador de DEDENTS */
+private boolean indent = false; /* Nos dice si hubo INDENT */
 
-  /* Incrementa blancos en i */
-  public void incrementa(int i){
-      whitespace+=i;
-  }
+/* Incrementa blancos en i */
+public void incrementa(int i){
+whitespace+=i;
+}
 
-  /* Vuelve 0 a los blancos */
-  public void clearWhitespace(){
-      whitespace = 0;
-  } 
-	
-  public int peek(){
-    return s.peek();
-  }
+/* Vuelve 0 a los blancos */
+public void clearWhitespace(){
+whitespace = 0;
+} 
 
-  public void push(int i){
-    s.push(i);
-  }
+public int peek(){
+return s.peek();
+}
 
-  public void pop(){
-    s.pop();
-  }
+public void push(int i){
+s.push(i);
+}
 
-  public void cuentaIndentacion(){
-  if(whitespace > peek()){
-      /* INDENT */
-      push(whitespace);
-      System.out.print("INDENT(" + (whitespace) + ")");
-      indent = true;
-   }else{
-	/* Contamos DEDENTS */
-	while(whitespace < peek()){
-	pop();
-	dedents++;
-        if(whitespace > peek()){
-          System.err.println("Error de indentación. Línea " + (yyline+1) + "."); 
-	  System.exit(-1);
-        }        
-        System.out.println("DEDENT");
-	}
-	yybegin(DEDENT);
-    }	
-    linestart = false;
-  }
+public void pop(){
+s.pop();
+}
 
-  /* Vacía la pila e imprime DEDENT por cada elemento en ella (excepto el primero) */
-  public void dedentAll(){
-      while(peek() != 0){
-          System.out.println("DEDENT");
-	  pop();
-	  dedents++;
-      }
-      yybegin(DEDENT);
-  }
+public void cuentaIndentacion(){
+if(whitespace > peek()){
+/* INDENT */
+push(whitespace);
+System.out.print("INDENT(" + (whitespace) + ")");
+indent = true;
+}else{
+/* Contamos DEDENTS */
+while(whitespace < peek()){
+pop();
+dedents++;
+if(whitespace > peek()){
+System.err.println("Error de indentación. Línea " + (yyline+1) + "."); 
+System.exit(-1);
+}        
+System.out.println("DEDENT");
+}
+yybegin(DEDENT);
+}	
+linestart = false;
+}
 
-  /* Quita las comillas al principio y final de la cadena s */
-  public String quitaComillas(String s){
-      return s.replace("\"", "");
-  }
+/* Vacía la pila e imprime DEDENT por cada elemento en ella (excepto el primero) */
+public void dedentAll(){
+while(peek() != 0){
+System.out.println("DEDENT");
+pop();
+dedents++;
+}
+yybegin(DEDENT);
+}
+
+/* Quita las comillas al principio y final de la cadena s */
+public String quitaComillas(String s){
+return s.replace("\"", "");
+}
 
 %}
 
 /* Construímos el stack */
 %init{
-  s = new Stack<>();
-  s.push(0);
-  whitespace = 0;
-  linestart = true;
-  espacio = false;
+s = new Stack<>();
+s.push(0);
+whitespace = 0;
+linestart = true;
+espacio = false;
 %init}
 
 LETRA = [a-zA-Z]
@@ -109,205 +109,250 @@ COMENTARIO = "#" {TODOS_CARACTERES}* {NEWLINE}?
 %%
 
 <YYINITIAL>{
-  .     {yypushback(1);
-	yybegin(NORMAL);}
+.     {yypushback(1);
+yybegin(NORMAL);}
+}
+
+<CONTADOR>{
+.       {yypushback(1); /* Regresa un caracter que no se leyo */
+/* Rutina para contar indentación */
+if(whitespace > peek()){
+/* INDENT */
+push(whitespace);
+System.out.print("INDENT(" + (whitespace) + ")");
+yybegin(INDENT);
+}else{
+/* Contamos DEDENTS */
+while(whitespace < peek()){
+pop();
+dedents++;
+if(whitespace > peek()){
+System.err.println("Error de indentación. Línea " + (yyline+1) + "."); 
+System.exit(-1);
+}        
+System.out.println("DEDENT");
+}
+yybegin(DEDENT);
+}	
+linestart = false;
+}
 }
 
 <DEDENT>{
-  .	{yypushback(1);
-	if(dedents > 0){
-	dedents--;
-	return Parser.DEDENT;
-	}
-	yybegin(NORMAL);}
-	}
-<NORMAL>{if(indent){
-	yypushback(1); /* Regresa un caracter que no se leyo */
-	indent = false;
-	return Parser.INDENT;}
+.	{yypushback(1);
+if(dedents > 0){
+dedents--;
+return Parser.DEDENT;
+}
+yybegin(NORMAL);}
+}
+
+<INDENT>{
+.	{yypushback(1); /* Regresa un caracter que no se leyo */
+return Parser.INDENT;
+yybegin(NORMAL);
+}
+}
+
+<NORMAL>{
 
 {COMENTARIO} {if(!linestart){
-		System.out.println("NEWLINE");
-		clearWhitespace(); linestart=true; espacio = false;
-		return Parser.NEWLINE;
-	     }}
+System.out.println("NEWLINE");
+clearWhitespace(); linestart=true; espacio = false;
+return Parser.NEWLINE;
+}}
+
 {SEPARADOR} {
-	if(linestart){
-	cuentaIndentacion();
-	}else{
-	System.out.print("SEPARADOR(" + yytext() + ")");
-	espacio=false;
-	switch(yytext()){
-	case "(":
-	     return Parser.PARENTESISI;
-	     break;
-	case ")":
-	     return Parser.PARENTESISD;
-	     break;
-	case ":":
-	     return Parser.DOSPUNTOS;
-	     break;
-	case ";":
-	     return Parser.PUNTOYCOMA;
-	     break;
-	}
-	}}
+if(linestart){
+yypushback(yylength());
+yybegin(CONTADOR);
+}else{
+System.out.print("SEPARADOR(" + yytext() + ")");
+espacio=false;
+switch(yytext()){
+case "(":
+return Parser.PARENTESISI;
+break;
+case ")":
+return Parser.PARENTESISD;
+break;
+case ":":
+return Parser.DOSPUNTOS;
+break;
+case ";":
+return Parser.PUNTOYCOMA;
+break;
+}
+}}
+
 {OPERADOR} {
-	if(linestart){
-	cuentaIndentacion();
-	}else{
-	System.out.print("OPERADOR(" + yytext() + ")");
-	espacio=false;
-	switch(yytext()){
-	case "+":
-	     return Parser.MAS;
-	     break;
-	case "-":
-	     return Parser.MENOS;
-	     break;
-	case "*":
-	     return Parser.POR;
-	     break;
-	case "**":
-	     return Parser.POTENCIA;
-	     break;
-	case "/":
-	     return Parser.DIV;
-	     break;
-	case "//":
-	     return Parser.DIVENTERA;
-	     break;
-	case "%":
-	     return Parser.MODULO;
-	     break;
-	case ">":
-	     return Parser.MAYOR;
-	     break;
-	case "<":
-	     return Parser.MENOR;
-	     break;
-	case "<==":
-	     return Parser.MENOROIGUAL;
-	     break;
-	case ">==":
-	     return Parser.MAYOROIGUAL;
-	     break;
-	case "==":
-	     return Parser.IGUALIGUAL;
-	     break;
-	case "!=":
-	     return Parser.DISTINTO;
-	     break;
-	case "-=":
-	     return Parser.DECREMENTO;
-	     break;
-	case "+=":
-	     return Parser.INCREMENTO;
-	     break;
-	case "=":
-	     return Parser.IGUAL;
-	     break;
-	}
-        }}
+if(linestart){
+yypushback(yylength());
+yybegin(CONTADOR);
+}else{
+System.out.print("OPERADOR(" + yytext() + ")");
+espacio=false;
+switch(yytext()){
+case "+":
+return Parser.MAS;
+break;
+case "-":
+return Parser.MENOS;
+break;
+case "*":
+return Parser.POR;
+break;
+case "**":
+return Parser.POTENCIA;
+break;
+case "/":
+return Parser.DIV;
+break;
+case "//":
+return Parser.DIVENTERA;
+break;
+case "%":
+return Parser.MODULO;
+break;
+case ">":
+return Parser.MAYOR;
+break;
+case "<":
+return Parser.MENOR;
+break;
+case "<==":
+return Parser.MENOROIGUAL;
+break;
+case ">==":
+return Parser.MAYOROIGUAL;
+break;
+case "==":
+return Parser.IGUALIGUAL;
+break;
+case "!=":
+return Parser.DISTINTO;
+break;
+case "-=":
+return Parser.DECREMENTO;
+break;
+case "+=":
+return Parser.INCREMENTO;
+break;
+case "=":
+return Parser.IGUAL;
+break;
+}
+}}
+
 {NEWLINE} {System.out.println("NEWLINE"); clearWhitespace(); linestart=true; espacio = false; return Parser.NEWLINE;}
 {ESPACIO} {if(linestart)
-		incrementa(1); espacio = false;}
+incrementa(1); espacio = false;}
+
 {TAB} {if(linestart)
-           incrementa(TABULADOR); espacio = false;}
+incrementa(TABULADOR); espacio = false;}
+
 {BOOLEANO} {if(espacio){
-	  System.err.println("Átomo mal formado en la línea " + (yyline+1) + ".");
-	  System.exit(-1);
-       }
-	 if(linestart){
-	 cuentaIndentacion();
-	 }else{
-	 System.out.print("BOOLEANO(" + yytext() + ")");
-	 espacio = true;
-	 return Parser.BOOLEAN;
-	 }}
-	 
+System.err.println("Átomo mal formado en la línea " + (yyline+1) + ".");
+System.exit(-1);
+}
+if(linestart){
+yypushback(yylength());
+yybegin(CONTADOR);
+}else{
+System.out.print("BOOLEANO(" + yytext() + ")");
+espacio = true;
+return Parser.BOOLEAN;
+}}
+
 {KEYWORD} {if(espacio){
-	  System.err.println("Átomo mal formado en la línea " + (yyline+1) + ".");
-	  System.exit(-1);
-       }
-	 if(linestart){
-	 cuentaIndentacion();
-	 }else{
-	 System.out.print("KEYWORD(" + yytext() + ")");
-	 espacio = true;
-	 switch(yytext()){
-	     case "and":
-	     	  return Parser.AND;
-		  break;
-	     case "or":
-	     	  return Parser.OR;
-		  break;
-	     case "not":
-	     	  return Parser.NOT;
-		  break;
-	     case "for":
-	     	  return Parser.FOR;
-		  break;
-	     case "while":
-	     	  return Parser.WHILE;
-		  break;
-	     case "if":
-	     	  return Parser.IF;
-		  break;
-	     case "else":
-	     	  return Parser.ELSE;
-		  break;
-	     case "elif":
-	     	  return Parser.ELIF;
-		  break;
-	     case "print":
-	     	  return Parser.PRINT;
-		  break;
-	     case "in":
-	     	  return Parser.IN;
-		  break;
-	 }
-	 }}
-	 
+System.err.println("Átomo mal formado en la línea " + (yyline+1) + ".");
+System.exit(-1);
+}
+if(linestart){
+yypushback(yylength());
+yybegin(CONTADOR);
+}else{
+System.out.print("KEYWORD(" + yytext() + ")");
+espacio = true;
+switch(yytext()){
+case "and":
+return Parser.AND;
+break;
+case "or":
+return Parser.OR;
+break;
+case "not":
+return Parser.NOT;
+break;
+case "for":
+return Parser.FOR;
+break;
+case "while":
+return Parser.WHILE;
+break;
+case "if":
+return Parser.IF;
+break;
+case "else":
+return Parser.ELSE;
+break;
+case "elif":
+return Parser.ELIF;
+break;
+case "print":
+return Parser.PRINT;
+break;
+case "in":
+return Parser.IN;
+break;
+}
+}}
+
 {CADENA} {if(espacio){
-	 System.err.println("Átomo mal formado en la línea " + (yyline+1) + ".");
-	  System.exit(-1);
-       }
-	 if(linestart){
-		 cuentaIndentacion();}else{
-		 System.out.print("CADENA(" + quitaComillas(yytext()) + ")");
-		 espacio = true;
-		 return Parser.CADENA;
-		 }}
+System.err.println("Átomo mal formado en la línea " + (yyline+1) + ".");
+System.exit(-1);
+}
+if(linestart){
+yypushback(yylength());
+yybegin(CONTADOR);}else{
+System.out.print("CADENA(" + quitaComillas(yytext()) + ")");
+espacio = true;
+return Parser.CADENA;
+}}
+
 {IDENTIFICADOR}	{if(espacio){
-		System.err.println("Átomo mal formado en la línea " + (yyline+1) + ".");
-		 System.exit(-1);
-       }
+System.err.println("Átomo mal formado en la línea " + (yyline+1) + ".");
+System.exit(-1);
+}
+if(linestart){
+yypushback(yylength());
+yybegin(CONTADOR);
+}else{
+System.out.print("IDENTIFICADOR(" + yytext() + ")");
+espacio = true;
+return Parser.IDENTIFIER;}}
 
-		if(linestart){
-		 cuentaIndentacion();
-		 }else{
-		 System.out.print("IDENTIFICADOR(" + yytext() + ")");
-		 espacio = true;
-		 return Parser.IDENTIFIER;}}
 {ENTERO} {if(espacio){
-	 System.err.println("Átomo mal formado en la línea " + (yyline+1) + ".");
-	 System.exit(-1);
-       espacio = true;}
+System.err.println("Átomo mal formado en la línea " + (yyline+1) + ".");
+System.exit(-1);
+espacio = true;}
 
-	 if(linestart){
-		     cuentaIndentacion();
-		     }else{
-		 System.out.print("ENTERO(" + yytext() + ")");
-		 espacio = true;
-		 return Parser.ENTERO;
-		 }}
+if(linestart){
+yypushback(yylength());
+yybegin(CONTADOR);
+}else{
+System.out.print("ENTERO(" + yytext() + ")");
+espacio = true;
+return Parser.ENTERO;
+}}
+
 {REAL} {if(espacio){
-	System.err.println("Átomo mal formado en la línea " + (yyline+1) + ".");
-	  System.exit(-1);
-       }
-       if(linestart){
-		 cuentaIndentacion();
+System.err.println("Átomo mal formado en la línea " + (yyline+1) + ".");
+System.exit(-1);
+}
+if(linestart){
+yypushback(yylength());
+	 yybegin(CONTADOR);
 		 }else{
 		 System.out.print("REAL(" + yytext() + ")");
 		 espacio = true;
