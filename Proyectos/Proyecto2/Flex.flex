@@ -19,6 +19,8 @@ private boolean linestart; /* Nos dice si no hemos leído cadenas válidas en la
 private int dedents = 0; /* Contador de DEDENTS */
 private boolean indent = false; /* Nos dice si hubo INDENT */
 
+private Parser yyparser;
+
 /* Incrementa blancos en i */
 public void incrementa(int i){
 whitespace+=i;
@@ -78,16 +80,21 @@ public String quitaComillas(String s){
 return s.replace("\"", "");
 }
 
-%}
+/** Nuevo constructor
+* @param FileReader r
+* @param Parser parser - parser
+*/
+public Flexer(java.io.Reader r, Parser parser){
+    this(r);
+    this.yyparser = parser;
+    s = new Stack<>();
+    s.push(0);
+    whitespace = 0;
+    linestart = true;
+    espacio = false;
+}
 
-/* Construímos el stack */
-%init{
-s = new Stack<>();
-s.push(0);
-whitespace = 0;
-linestart = true;
-espacio = false;
-%init}
+%}
 
 LETRA = [a-zA-Z]
 DIGITO = [0-9]
