@@ -1,4 +1,3 @@
-file ?= prueba.txt
 left:
 	byacc -J -dv GramI.y && jflex Flexer.flex
 	javac Parser.java && javac Flexer.java
