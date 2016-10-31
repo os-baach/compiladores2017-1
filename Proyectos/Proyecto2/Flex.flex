@@ -147,17 +147,17 @@ linestart = false;
 
 <DEDENT>{
 .	{yypushback(1);
-if(dedents > 0){
-dedents--;
-return Parser.DEDENT;
-}
-yybegin(NORMAL);}
+	if(dedents > 0){
+		   dedents--;
+		   return Parser.DEDENT;
+	}else 
+	      yybegin(NORMAL);}
 }
 
 <INDENT>{
 .	{yypushback(1); /* Regresa un caracter que no se leyo */
-return Parser.INDENT;
-yybegin(NORMAL);
+	yybegin(NORMAL);
+	return Parser.INDENT;
 }
 }
 
@@ -179,16 +179,16 @@ espacio=false;
 switch(yytext()){
 case "(":
 return Parser.PARENTESISI;
-break;
+
 case ")":
 return Parser.PARENTESISD;
-break;
+
 case ":":
 return Parser.DOSPUNTOS;
-break;
+
 case ";":
 return Parser.PUNTOYCOMA;
-break;
+
 }
 }}
 
@@ -202,52 +202,52 @@ espacio=false;
 switch(yytext()){
 case "+":
 return Parser.MAS;
-break;
+
 case "-":
 return Parser.MENOS;
-break;
+
 case "*":
 return Parser.POR;
-break;
+
 case "**":
 return Parser.POTENCIA;
-break;
+
 case "/":
 return Parser.DIV;
-break;
+
 case "//":
 return Parser.DIVENTERA;
-break;
+
 case "%":
 return Parser.MODULO;
-break;
+
 case ">":
 return Parser.MAYOR;
-break;
+
 case "<":
 return Parser.MENOR;
-break;
+
 case "<==":
 return Parser.MENOROIGUAL;
-break;
+
 case ">==":
 return Parser.MAYOROIGUAL;
-break;
+
 case "==":
 return Parser.IGUALIGUAL;
-break;
+
 case "!=":
 return Parser.DISTINTO;
-break;
+
 case "-=":
 return Parser.DECREMENTO;
-break;
+
 case "+=":
 return Parser.INCREMENTO;
-break;
+
 case "=":
 return Parser.IGUAL;
-break;
+
 }
 }}
 
@@ -284,34 +284,34 @@ espacio = true;
 switch(yytext()){
 case "and":
 return Parser.AND;
-break;
+
 case "or":
 return Parser.OR;
-break;
+
 case "not":
 return Parser.NOT;
-break;
+
 case "for":
 return Parser.FOR;
-break;
+
 case "while":
 return Parser.WHILE;
-break;
+
 case "if":
 return Parser.IF;
-break;
+
 case "else":
 return Parser.ELSE;
-break;
+
 case "elif":
 return Parser.ELIF;
-break;
+
 case "print":
 return Parser.PRINT;
-break;
+
 case "in":
 return Parser.IN;
-break;
+
 }
 }}
 
