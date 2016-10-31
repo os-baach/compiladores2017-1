@@ -1,16 +1,16 @@
 /* Clase principal de Nodos(Componente(?)) */
 public class Nodo{
-    int value; /* Valor dentro del nodo, aunque no entiendo por qué es int */
+    Object value; /* Valor dentro del nodo */
     Nodo izq; /* Hijo izquierdo */
     Nodo der; /* Hijo derecho */
     
     /* Regresa el valor del nodo */
-    public int getValue(){
+    public Object getValue(){
 	return value;
     }
 
     /* Establece para el nodo un nuevo valor (sólo para hojas) */
-    public void setValue(int val){
+    public void setValue(Object val){
 	this.value = val;
     }
 
@@ -36,22 +36,77 @@ public class Nodo{
     
 }
 
+/* Clase NodoMas */
+class NodoMas extends Nodo{
+    
+}
+
+/* Clase NodoMenos */
+class NodoMenos extends Nodo{
+    
+}
+
+/* Clase NodoPor */
+class NodoPor extends Nodo{
+    
+}
+
+/* Clase NodoPotencia */
+class NodoPotencia extends Nodo{
+    
+}
+
+/* Clase NodoDiv */
+class NodoDiv extends Nodo{
+    
+}
+
+/* Clase NodoDivEntera */
+class NodoDivEntera extends Nodo{
+    
+}
+
+/* Clase NodoModulo */
+class NodoModulo extends Nodo{
+    
+}
+
+/* Clase NodoEq */
+class NodoEq extends Nodo{
+    
+}
+
+/* Clase NodoPrint. No sé si esta es necesaria. */
+class NodoPrint extends Nodo{
+    
+}
+
 /* Clase Hoja. Vacía por ahora. */
 class Hoja extends Nodo{
+}
+
+/* Hoja con identificador como elemento */
+class HojaIdentifier extends Hoja{
+
+    /* Construye una hoja de identificador */
+    HojaIdentifier(String id){
+	value = (Object) id;
+    }
+	
 }
 
 /* Hoja con elemento entero */
 class HojaEntera extends Hoja
 {
     /* Construye una hoja entera con valor v */
-    HojaEntera(int v){
-	value=v;
+    HojaEntera(Integer v){
+	value = (Object) v;
     }
 
     /* Regresa el valor de la hoja entera... No era necesario 
        sobrescribirlo(?) */
-    public int getValue(){
-	return this.value;
+    public Integer getValue(){
+	return (Integer) this.value;
     }    
 }
 
