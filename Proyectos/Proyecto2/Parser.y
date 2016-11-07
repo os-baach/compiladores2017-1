@@ -19,32 +19,32 @@
 
  /* file_input: (NEWLINE | stmt)* ENDMARKER  */
 file_input: {System.out.println("Reconocimiento exitoso");}
-| aux0 {$$ = $1;} 
+| aux0 {System.out.println("Reconocimiento exitoso");} 
 ;
 
-aux0: NEWLINE
-| stmt {$$ = $1;}
-| aux0 NEWLINE
-| aux0 stmt
+aux0: NEWLINE 
+| stmt 
+| aux0 NEWLINE 
+| aux0 stmt 
 ;
 
 /* stmt: simple_stmt | compound_stmt  */
-stmt: simple_stmt {$$ = $1;}
-| compound_stmt {$$ = $1;}
+stmt: simple_stmt 
+| compound_stmt 
 ;
 
 /* simple_stmt: small_stmt [';'] NEWLINE  */
-simple_stmt: small_stmt NEWLINE {$$ = $1;}
+simple_stmt: small_stmt NEWLINE 
 | small_stmt PUNTOYCOMA NEWLINE
 ;
 
 /* small_stmt: expr_stmt | print_stmt  */
-small_stmt: expr_stmt {$$ = $1;}
-| print_stmt {$$ = $1;}
+small_stmt: expr_stmt 
+| print_stmt 
 ;
 
 /* expr_stmt: test [('='|augassign) test]  */
-expr_stmt: test {$$ = $1;}
+expr_stmt: test 
 | test IGUAL test
 | test augassign test
 ;
@@ -60,22 +60,22 @@ print_stmt: PRINT
 ;
 
 /* compound_stmt: if_stmt | while_stmt  */
-compound_stmt: if_stmt {$$ = $1;}
-| while_stmt {$$ = $1;}
+compound_stmt: if_stmt 
+| while_stmt 
 ;
 
 /* if_stmt: 'if' test ':' suite ('elif' test ':' suite)* ['else' ':' suite]  */
-if_stmt: IF test DOSPUNTOS suite {$$ = $2; $$ = $4;}
+if_stmt: IF test DOSPUNTOS suite 
 | IF test DOSPUNTOS suite ELSE DOSPUNTOS suite
 | IF test DOSPUNTOS suite aux1 ELSE DOSPUNTOS suite
 ;
 
-aux1: ELIF test DOSPUNTOS suite {$$ = $2; $$ = $4;}
+aux1: ELIF test DOSPUNTOS suite 
 | aux1 ELIF test DOSPUNTOS suite
 ;
 
 /* while_stmt: 'while' test ':' suite  */
-while_stmt: WHILE test DOSPUNTOS suite {$$ = $2; $$ = $4;}
+while_stmt: WHILE test DOSPUNTOS suite 
 ;
 
 /* suite: simple_stmt | NEWLINE INDENT stmt+ DEDENT  */
@@ -83,16 +83,16 @@ suite: simple_stmt {$$ = $1;}
 | NEWLINE INDENT aux2 DEDENT
 ;
 
-aux2: stmt {$$ = $1;}
+aux2: stmt 
 | aux2 stmt
 ;
 
 /* test: or_test  */
-test: or_test {$$ = $1;}
+test: or_test 
 ;
 
 /* or_test: and_test ('or' and_test)* */
-or_test: and_test {$$ = $1;}
+or_test: and_test 
 | and_test aux3
 ;
 
@@ -101,7 +101,7 @@ aux3: OR and_test
 ;
 
 /* and_test: not_test ('and' not_test)* */
-and_test: not_test {$$ = $1;}
+and_test: not_test 
 | not_test aux4
 ;
 
@@ -111,11 +111,11 @@ aux4: AND not_test
 
 /* not_test: 'not' not_test | comparison  */
 not_test: NOT not_test
-| comparison {$$ = $1;}
+| comparison 
 ;
 
 /* comparison: expr (comp_op expr)* */
-comparison: expr {$$ = $1;}
+comparison: expr 
 | expr aux5
 ;
 
@@ -135,7 +135,7 @@ comp_op: MENOR
 ;
 
 /* expr: term (('+'|'-') term)*  */
-expr: term {$$ = $1;}
+expr: term
 | term aux6
 ;
 
@@ -146,7 +146,7 @@ aux6: MAS term
 ;
 
 /* term: factor (('*'|'/'|'%'|'//') factor)*  */
-term: factor {$$ = $1;}
+term: factor 
 | factor aux7
 ;
 
@@ -163,11 +163,11 @@ aux7: POR factor
 /* factor: ('+'|'-') factor | power  */
 factor: MAS factor
 | MENOS factor
-| power {$$ = $1;}
+| power 
 ;
 
 /* power: atom ['**' factor]  */
-power: atom {$$ = $1;}
+power: atom 
 | atom POTENCIA factor
 ;
 
