@@ -111,6 +111,16 @@ class HojaReal extends Hoja
 	value = v;
     }
 }
+
+/* Hoja con elemento boolean */
+class HojaBoolean extends Hoja
+{
+    /* Construye una hoja boolean con valor v */
+    HojaBoolean(Boolean v){
+	value = v;
+    }
+}
+
 /* Hoja con elemento cadena */
 class HojaCadena extends Hoja
 {
