@@ -163,21 +163,22 @@ aux7: POR factor
 
 /* factor: ('+'|'-') factor | power  */
 factor: MAS factor
-| MENOS factor
+| MENOS factor {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; n.setHijoIzq(izq); $$ = new ParserVal((Object)n);}
 | power {$$ = $1;}
 ;
 
 /* power: atom ['**' factor]  */
 power: atom {$$ = $1;}
-| atom POTENCIA factor
+| atom POTENCIA factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.setHijoIzq(izq); n.setHijoDer(der); $$ = new ParserVal((Object)n);}
 ;
 
 /* atom: ENTERO | REAL | CADENA | BOOLEAN | IDENTIFIER  */
-atom: ENTERO
-| REAL
-| CADENA
-| BOOLEAN
-| IDENTIFIER
+atom: 
+ENTERO {$$ = $1;}
+| REAL {$$ = $1;}
+| CADENA {$$ = $1;}
+| BOOLEAN {$$ = $1;}
+| IDENTIFIER {$$ = $1;}
 ;
 
 %%

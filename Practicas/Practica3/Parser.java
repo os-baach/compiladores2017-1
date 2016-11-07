@@ -441,7 +441,7 @@ final static String yyrule[] = {
 "atom : IDENTIFIER",
 };
 
-//#line 184 "Parser.y"
+//#line 185 "Parser.y"
 
 private Flexer lexer;
 /* interface to the lexer */
@@ -719,6 +719,10 @@ case 62:
 //#line 150 "Parser.y"
 {yyval = val_peek(0);}
 break;
+case 73:
+//#line 166 "Parser.y"
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); yyval = new ParserVal((Object)n);}
+break;
 case 74:
 //#line 167 "Parser.y"
 {yyval = val_peek(0);}
@@ -727,7 +731,31 @@ case 75:
 //#line 171 "Parser.y"
 {yyval = val_peek(0);}
 break;
-//#line 692 "Parser.java"
+case 76:
+//#line 172 "Parser.y"
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+break;
+case 77:
+//#line 177 "Parser.y"
+{yyval = val_peek(0);}
+break;
+case 78:
+//#line 178 "Parser.y"
+{yyval = val_peek(0);}
+break;
+case 79:
+//#line 179 "Parser.y"
+{yyval = val_peek(0);}
+break;
+case 80:
+//#line 180 "Parser.y"
+{yyval = val_peek(0);}
+break;
+case 81:
+//#line 181 "Parser.y"
+{yyval = val_peek(0);}
+break;
+//#line 720 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####
