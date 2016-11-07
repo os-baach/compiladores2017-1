@@ -90,7 +90,7 @@ class HojaIdentifier extends Hoja{
 
     /* Construye una hoja de identificador */
     HojaIdentifier(String id){
-	value = (Object) id;
+	value = id;
     }
 	
 }
@@ -100,14 +100,22 @@ class HojaEntera extends Hoja
 {
     /* Construye una hoja entera con valor v */
     HojaEntera(Integer v){
-	value = (Object) v;
+	value = v;
     }
-
-    /* Regresa el valor de la hoja entera... No era necesario 
-       sobrescribirlo(?) */
-    public Integer getValue(){
-	return (Integer) this.value;
-    }    
 }
-
-
+/* Hoja con elemento real */
+class HojaReal extends Hoja
+{
+    /* Construye una hoja entera con valor v */
+    HojaReal(Double v){
+	value = v;
+    }
+}
+/* Hoja con elemento cadena */
+class HojaCadena extends Hoja
+{
+    /* Construye una hoja entera con valor v */
+    HojaCadena(String v){
+	value = v;
+    }
+}

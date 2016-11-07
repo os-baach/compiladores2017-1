@@ -98,26 +98,27 @@ BOOLEAN		=	("True" | "False")
 <CADENA>{
   {CHAR_LITERAL}+			{cadena = yytext();}
   \"					{ yybegin(NORMAL);
-					 cadena = "";
+  					 yyparser.yylval = new HojaCadena(yytext());
+  					 cadena = "";
 					 return Parser.CADENA;}
   {NEWLINE}				{ System.out.println("Unexpected newline. Line "+(yyline+1));
                                          System.exit(1);}
 }
 <NORMAL>{
   \"					{ yybegin(CADENA); }
-  {REAL}			 	{ return Parser.REAL;}
+  {REAL}			 	{ yyparser.yylval = new HojaReal(Double.parseDouble(yytext())); return Parser.REAL; }
   {ENTERO}		        	{ yyparser.yylval = new HojaEntera(Integer.parseInt(yytext())); return Parser.ENTERO; }
-  "+"         			        { return Parser.MAS;} 
-  "-"				      	{ return Parser.MENOS;} 
-  "*"				       { return Parser.POR;} 
-  "**"				       { return Parser.POTENCIA;} 
-  "/"				       { return Parser.DIV;} 
-  "//"				       { return Parser.DIVENTERA;}
-  "%"				       { return Parser.MODULO;}
-  "="				       { return Parser.EQ;}
-{BOOLEAN}			       { return Parser.BOOLEAN;}
-  "print"				{ return Parser.PRINT;}	 
-  {IDENTIFIER}              		{ return Parser.IDENTIFIER;}
+  "+"         			        { yyparser.yylval = new NodoMas(); return Parser.MAS;} 
+  "-"				      	{ yyparser.yylval = new NodoMenos(); return Parser.MENOS;}  
+  "*"				       { yyparser.yylval = new NodoPor(); return Parser.POR;}  
+  "**"				       { yyparser.yylval = new NodoPotencia(); return Parser.POTENCIA;}  
+  "/"				       { yyparser.yylval = new NodoDiv(); return Parser.DIV;}  
+  "//"				       { yyparser.yylval = new NodoDivEntera(); return Parser.DIVENTERA;} 
+  "%"				       { yyparser.yylval = new NodoModulo(); return Parser.MODULO;} 
+  "="				       { yyparser.yylval = new NodoEq(); return Parser.EQ;} 
+{BOOLEAN}			       { yyparser.yylval = new HojaBoolean(Boolean.parseBoolean(yytext())); return Parser.BOOLEAN; }
+  "print"				{ yyparser.yylval = new NodoPrint(); return Parser.PRINT;} 	 
+  {IDENTIFIER}              		{ yyparser.yylval = new HojaIdentifier(yytext()); return Parser.IDENTIFIER; }
   {NEWLINE}                 		{ yybegin(INDENT); actual=0;
   					  return Parser.NEWLINE;
 					}
