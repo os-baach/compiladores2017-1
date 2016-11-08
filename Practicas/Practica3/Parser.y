@@ -80,7 +80,7 @@ while_stmt: WHILE test DOSPUNTOS suite {$$ = $2; $$ = $4;}
 
 /* suite: simple_stmt | NEWLINE INDENT stmt+ DEDENT  */
 suite: simple_stmt {$$ = $1;}
-| NEWLINE INDENT aux2 DEDENT
+| NEWLINE INDENT aux2 DEDENT {$$ = $3;}
 ;        
 
 aux2: stmt {$$ = $1;}
@@ -131,7 +131,7 @@ comp_op: MENOR {$$ = $1;}
 | MENOROIGUAL {$$ = $1;}
 | DISTINTO {$$ = $1;}
 | IN {$$ = $1;}
-| NOT IN {$$ = $1;}
+| NOT IN {$$ = $1; $$ = $2;}
 ;
 
 /* expr: term (('+'|'-') term)*  */

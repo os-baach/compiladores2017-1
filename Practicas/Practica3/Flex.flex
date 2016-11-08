@@ -184,10 +184,10 @@ case ")":
 return Parser.PARENTESISD;
 
 case ":":
-return Parser.DOSPUNTOS;
+yyparser.yylval = new ParserVal(new NodoDosPuntos()); return Parser.DOSPUNTOS;
 
 case ";":
-return Parser.PUNTOYCOMA;
+yyparser.yylval = new ParserVal(new NodoPuntoYComa()); return Parser.PUNTOYCOMA;
 
 }
 }}
@@ -222,28 +222,28 @@ case "%":
 yyparser.yylval = new ParserVal(new NodoModulo()); return Parser.MODULO;
 
 case ">":
-return Parser.MAYOR;
+yyparser.yylval = new ParserVal(new NodoMayor()); return Parser.MAYOR;
 
 case "<":
-return Parser.MENOR;
+yyparser.yylval = new ParserVal(new NodoMayor()); return Parser.MENOR;
 
 case "<==":
-return Parser.MENOROIGUAL;
+yyparser.yylval = new ParserVal(new NodoMenorIgual()); return Parser.MENOROIGUAL;
 
 case ">==":
-return Parser.MAYOROIGUAL;
+yyparser.yylval = new ParserVal(new NodoMayorIgual()); return Parser.MAYOROIGUAL;
 
 case "==":
-return Parser.IGUALIGUAL;
+yyparser.yylval = new ParserVal(new NodoIgualIgual()); return Parser.IGUALIGUAL;
 
 case "!=":
-return Parser.DISTINTO;
+yyparser.yylval = new ParserVal(new NodoDistinto()); return Parser.DISTINTO;
 
 case "-=":
-return Parser.DECREMENTO;
+yyparser.yylval = new ParserVal(new NodoDecremento()); return Parser.DECREMENTO;
 
 case "+=":
-return Parser.INCREMENTO;
+yyparser.yylval = new ParserVal(new NodoIncremento()); return Parser.INCREMENTO;
 
 case "=":
 yyparser.yylval = new ParserVal(new NodoEq()); return Parser.IGUAL;
@@ -283,34 +283,34 @@ System.out.print("KEYWORD(" + yytext() + ")");
 espacio = true;
 switch(yytext()){
 case "and":
-return Parser.AND;
+yyparser.yylval = new ParserVal(new NodoAnd()); return Parser.AND;
 
 case "or":
-return Parser.OR;
+yyparser.yylval = new ParserVal(new NodoOr()); return Parser.OR;
 
 case "not":
-return Parser.NOT;
+yyparser.yylval = new ParserVal(new NodoNot()); return Parser.NOT;
 
 case "for":
-return Parser.FOR;
+yyparser.yylval = new ParserVal(new NodoFor()); return Parser.FOR;
 
 case "while":
-return Parser.WHILE;
+yyparser.yylval = new ParserVal(new NodoWhile()); return Parser.WHILE;
 
 case "if":
-return Parser.IF;
+yyparser.yylval = new ParserVal(new NodoIf()); return Parser.IF;
 
 case "else":
-return Parser.ELSE;
+yyparser.yylval = new ParserVal(new NodoElse()); return Parser.ELSE;
 
 case "elif":
-return Parser.ELIF;
+yyparser.yylval = new ParserVal(new NodoElif()); return Parser.ELIF;
 
 case "print":
 yyparser.yylval = new ParserVal(new NodoPrint()); return Parser.PRINT;
 
 case "in":
-return Parser.IN;
+yyparser.yylval = new ParserVal(new NodoIn()); return Parser.IN;
 
 }
 }}

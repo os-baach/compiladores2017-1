@@ -76,6 +76,101 @@ class NodoEq extends Nodo{
     
 }
 
+/* Clase NodoMayor */
+class NodoMayor extends Nodo{
+    
+}
+
+/* Clase NodoMenor */
+class NodoMenor extends Nodo{
+    
+}
+
+/* Clase NodoMenorIgual */
+class NodoMenorIgual extends Nodo{
+    
+}
+
+/* Clase NodoMayorIgual */
+class NodoMayorIgual extends Nodo{
+    
+}
+
+/* Clase NodoIgualIgual */
+class NodoIgualIgual extends Nodo{
+    
+}
+
+/* Clase NodoDistinto */
+class NodoDistinto extends Nodo{
+    
+}
+
+/* Clase NodoDecremento */
+class NodoDecremento extends Nodo{
+    
+}
+
+/* Clase NodoDecremento */
+class NodoIncremento extends Nodo{
+    
+}
+
+/* Clase NodoAnd*/
+class NodoAnd extends Nodo{
+    
+}
+
+/* Clase NodoOr*/
+class NodoOr extends Nodo{
+    
+}
+
+/* Clase NodoNot*/
+class NodoNot extends Nodo{
+    
+}
+
+/* Clase NodoFor*/
+class NodoFor extends Nodo{
+    
+}
+
+/* Clase NodoWhile*/
+class NodoWhile extends Nodo{
+    
+}
+
+/* Clase NodoIf*/
+class NodoIf extends Nodo{
+    
+}
+
+/* Clase NodoElse*/
+class NodoElse extends Nodo{
+    
+}
+
+/* Clase NodoElif*/
+class NodoElif extends Nodo{
+    
+}
+
+/* Clase NodoIn*/
+class NodoIn extends Nodo{
+    
+}
+
+/* Clase NodoDosPuntos*/
+class NodoDosPuntos extends Nodo{
+    
+}
+
+/* Clase NodoDosPuntos*/
+class NodoPuntoYComa extends Nodo{
+    
+}
+
 /* Clase NodoPrint. No sé si esta es necesaria. */
 class NodoPrint extends Nodo{
     
