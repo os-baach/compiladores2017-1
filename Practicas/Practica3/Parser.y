@@ -7,7 +7,7 @@
 %token DEDENT INDENT NEWLINE
 %token PARENTESISI PARENTESISD DOSPUNTOS PUNTOYCOMA
 %token MAS MENOS POR POTENCIA DIV DIVENTERA MODULO
-%token MAYOR MENOR MENOROIGUAL MAYOROIGUAL IGUALIGUAL DISTINTO EQ
+%token MAYOR MENOR MENOROIGUAL MAYOROIGUAL IGUALIGUAL DISTINTO 
 %token DECREMENTO INCREMENTO IGUAL
 %token BOOLEAN AND OR NOT
 %token FOR WHILE IF ELSE ELIF PRINT IN
@@ -123,7 +123,7 @@ aux5: comp_op expr {$$ = $1;}
 | aux5 comp_op expr {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.setHijoIzq(izq); n.setHijoDer(der); $$ = new ParserVal((Object)n);} 
 ;
 
-/* comp_op: '<'|'>'|'=='|'>='|'<='|'!='|'in'|'not' 'in' */
+/* comp_op: '<'|'>'|'=='|'>='|'<='|'!='|'in'|'not' 'in'|'=' */
 comp_op: MENOR {$$ = $1;}
 | MAYOR {$$ = $1;}
 | IGUALIGUAL {$$ = $1;}
@@ -132,7 +132,6 @@ comp_op: MENOR {$$ = $1;}
 | DISTINTO {$$ = $1;}
 | IN {$$ = $1;}
 | NOT IN {$$ = $1;}
-| EQ {$$ = $1;}
 ;
 
 /* expr: term (('+'|'-') term)*  */

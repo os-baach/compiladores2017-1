@@ -1,5 +1,5 @@
 test:
-	byacc -J -dv Parser.y && jflex Flexer.flex
+	byacc -J -dv Parser.y && jflex Flex.flex
 	javac *.java
 	java Parser Prueba.txt
 
