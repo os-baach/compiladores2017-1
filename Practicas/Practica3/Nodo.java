@@ -3,6 +3,12 @@ public class Nodo{
     Object value; /* Valor dentro del nodo */
     Nodo izq; /* Hijo izquierdo */
     Nodo der; /* Hijo derecho */
+
+    /* Regresa el valor del nodo */
+    @Override
+    public String toString(){
+	return value.toString();
+    }
     
     /* Regresa el valor del nodo */
     public Object getValue(){
@@ -33,7 +39,40 @@ public class Nodo{
     public void setHijoDer(Nodo d){
 	this.der = d;
     }
-    
+
+    /* Nos dice si hay hijo izquierdo */
+    public boolean hayIzquierdo(){
+	return this.izq != null;
+    }
+
+    /* Nos dice si hay hijo derecho */
+    public boolean hayDerecho(){
+	return this.der != null;
+    }
+
+    /* Imprime el subárbol con este nodo como su raíz 
+     * indent - Valor de indentación para que el árbol se vea bien
+     * ultimo - Nos dice si el nodo es el último del subárbol (se imprime 
+       distinto)
+     */
+    public void imprimeSubarbol(String indent, boolean ultimo){
+	System.out.print(indent);
+	if(ultimo){
+	    System.out.print("\\-");
+	    indent += "  ";
+	}else{
+	    System.out.print("|-");
+	    indent += "|  ";
+	}
+	System.out.println(this);
+        if(hayIzquierdo())
+	    if(hayDerecho())
+		this.izq.imprimeSubarbol(indent, false);
+	    else
+		this.izq.imprimeSubarbol(indent, true);
+	if(hayDerecho())
+	    this.der.imprimeSubarbol(indent, true);
+    }
 }
 
 /* Clase NodoMas */
@@ -224,3 +263,5 @@ class HojaCadena extends Hoja
 	value = v;
     }
 }
+
+
