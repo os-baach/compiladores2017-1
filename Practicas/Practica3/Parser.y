@@ -24,8 +24,8 @@ file_input: {System.out.println("Reconocimiento exitoso");}
 
 aux0: NEWLINE
 | stmt {$$ = $1;}
-| aux0 NEWLINE
-| aux0 stmt
+| aux0 NEWLINE {$$ = $1;}
+| aux0 stmt {$$ = $1;}
 ;
 
 /* stmt: simple_stmt | compound_stmt  */
@@ -35,7 +35,7 @@ stmt: simple_stmt {$$ = $1;}
 
 /* simple_stmt: small_stmt [';'] NEWLINE  */
 simple_stmt: small_stmt NEWLINE {$$ = $1;}
-| small_stmt PUNTOYCOMA NEWLINE
+| small_stmt PUNTOYCOMA NEWLINE {$$ = $1;}
 ;
 
 /* small_stmt: expr_stmt | print_stmt  */
@@ -45,18 +45,18 @@ small_stmt: expr_stmt {$$ = $1;}
 
 /* expr_stmt: test [('='|augassign) test]  */
 expr_stmt: test {$$ = $1;}
-| test IGUAL test
-| test augassign test
+| test IGUAL test {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
+| test augassign test {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);} 
 ;
 
 /* augassign: '+=' | '-='  */
-augassign: INCREMENTO
-| DECREMENTO
+augassign: INCREMENTO {$$ = $1;}
+| DECREMENTO {$$ = $1;}
 ;
 
 /* print_stmt: 'print' [test] */
-print_stmt: PRINT
-| PRINT test
+print_stmt: PRINT {$$ = $1;}
+| PRINT test {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; n.nuevoHijo(izq); $$ = new ParserVal((Object)n);}
 ;
 
 /* compound_stmt: if_stmt | while_stmt  */
@@ -65,13 +65,13 @@ compound_stmt: if_stmt {$$ = $1;}
 ;
 
 /* if_stmt: 'if' test ':' suite ('elif' test ':' suite)* ['else' ':' suite]  */
-if_stmt: IF test DOSPUNTOS suite {$$ = $2; $$ = $4;}
+if_stmt: IF test DOSPUNTOS suite {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; Nodo der = (Nodo) $4.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
 | IF test DOSPUNTOS suite ELSE DOSPUNTOS suite
-| IF test DOSPUNTOS suite aux1 ELSE DOSPUNTOS suite
+| IF test DOSPUNTOS suite aux1 ELSE DOSPUNTOS suite 
 ;
 
 aux1: ELIF test DOSPUNTOS suite {$$ = $2; $$ = $4;}
-| aux1 ELIF test DOSPUNTOS suite 
+| aux1 ELIF test DOSPUNTOS suite {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); Nodo der2 = (Nodo) $5.obj; n.nuevoHijo(der2); $$ = new ParserVal((Object)n);}
 ;
 
 /* while_stmt: 'while' test ':' suite  */
@@ -120,7 +120,7 @@ comparison: expr {$$ = $1;}
 ;
 
 aux5: comp_op expr {$$ = $1;}
-| aux5 comp_op expr {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.setHijoIzq(izq); n.setHijoDer(der); $$ = new ParserVal((Object)n);} 
+| aux5 comp_op expr {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);} 
 ;
 
 /* comp_op: '<'|'>'|'=='|'>='|'<='|'!='|'in'|'not' 'in'|'=' */

@@ -630,6 +630,14 @@ case 4:
 //#line 26 "Parser.y"
 {yyval = val_peek(0);}
 break;
+case 5:
+//#line 27 "Parser.y"
+{yyval = val_peek(1);}
+break;
+case 6:
+//#line 28 "Parser.y"
+{yyval = val_peek(1);}
+break;
 case 7:
 //#line 32 "Parser.y"
 {yyval = val_peek(0);}
@@ -641,6 +649,10 @@ break;
 case 9:
 //#line 37 "Parser.y"
 {yyval = val_peek(1);}
+break;
+case 10:
+//#line 38 "Parser.y"
+{yyval = val_peek(2);}
 break;
 case 11:
 //#line 42 "Parser.y"
@@ -654,6 +666,30 @@ case 13:
 //#line 47 "Parser.y"
 {yyval = val_peek(0);}
 break;
+case 14:
+//#line 48 "Parser.y"
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
+break;
+case 15:
+//#line 49 "Parser.y"
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
+break;
+case 16:
+//#line 53 "Parser.y"
+{yyval = val_peek(0);}
+break;
+case 17:
+//#line 54 "Parser.y"
+{yyval = val_peek(0);}
+break;
+case 18:
+//#line 58 "Parser.y"
+{yyval = val_peek(0);}
+break;
+case 19:
+//#line 59 "Parser.y"
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); yyval = new ParserVal((Object)n);}
+break;
 case 20:
 //#line 63 "Parser.y"
 {yyval = val_peek(0);}
@@ -664,15 +700,19 @@ case 21:
 break;
 case 22:
 //#line 68 "Parser.y"
-{yyval = val_peek(2); yyval = val_peek(0);}
+{Nodo n = (Nodo) val_peek(3).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 25:
 //#line 73 "Parser.y"
 {yyval = val_peek(2); yyval = val_peek(0);}
 break;
+case 26:
+//#line 74 "Parser.y"
+{Nodo n = (Nodo) val_peek(3).obj; Nodo izq = (Nodo) val_peek(4).obj; Nodo der = (Nodo) val_peek(2).obj; n.nuevoHijo(izq); n.nuevoHijo(der); Nodo der2 = (Nodo) val_peek(0).obj; n.nuevoHijo(der2); yyval = new ParserVal((Object)n);}
+break;
 case 27:
 //#line 78 "Parser.y"
-{yyval = val_peek(2); yyval = val_peek(0);}
+{Nodo n = (Nodo) val_peek(3).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 28:
 //#line 82 "Parser.y"
@@ -704,11 +744,11 @@ case 34:
 break;
 case 35:
 //#line 99 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 36:
 //#line 100 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 37:
 //#line 104 "Parser.y"
@@ -720,15 +760,15 @@ case 38:
 break;
 case 39:
 //#line 108 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 40:
 //#line 109 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 41:
 //#line 113 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); yyval = new ParserVal((Object)n);}
 break;
 case 42:
 //#line 114 "Parser.y"
@@ -748,7 +788,7 @@ case 45:
 break;
 case 46:
 //#line 123 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 47:
 //#line 127 "Parser.y"
@@ -792,19 +832,19 @@ case 56:
 break;
 case 57:
 //#line 142 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 58:
 //#line 143 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 59:
 //#line 144 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 60:
 //#line 145 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 61:
 //#line 149 "Parser.y"
@@ -816,43 +856,43 @@ case 62:
 break;
 case 63:
 //#line 153 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 64:
 //#line 154 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 65:
 //#line 155 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 66:
 //#line 156 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 67:
 //#line 157 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 68:
 //#line 158 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 69:
 //#line 159 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 70:
 //#line 160 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 71:
 //#line 164 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); yyval = new ParserVal((Object)n);}
 break;
 case 72:
 //#line 165 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); yyval = new ParserVal((Object)n);}
 break;
 case 73:
 //#line 166 "Parser.y"
@@ -864,7 +904,7 @@ case 74:
 break;
 case 75:
 //#line 171 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.setHijoIzq(izq); n.setHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 76:
 //#line 176 "Parser.y"
@@ -886,7 +926,7 @@ case 80:
 //#line 180 "Parser.y"
 {yyval = val_peek(0);}
 break;
-//#line 850 "Parser.java"
+//#line 890 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####
