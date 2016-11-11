@@ -1,8 +1,15 @@
+import java.util.List;
+import java.util.LinkedList;
+
 /* Clase principal de Nodos(Componente(?)) */
 public class Nodo{
     Object value; /* Valor dentro del nodo */
-    Nodo izq; /* Hijo izquierdo */
-    Nodo der; /* Hijo derecho */
+    List<Nodo> hijos; /* Hijos del nodo */
+
+    /* Inicializa la lista de hijos del nodo */
+    public Nodo(){
+	this.hijos = new LinkedList<Nodo>();
+    }
 
     /* Regresa el valor del nodo */
     @Override
@@ -15,41 +22,21 @@ public class Nodo{
 	return value;
     }
 
+    /* Regresa la lista de hijos del nodo */
+    public List<Nodo> getHijos(){
+	return this.hijos;
+    }
+
+    /* Le pone al nodo un nuevo hijo */
+    public void nuevoHijo(Nodo n){
+	this.hijos.add(n);
+    }
+    
     /* Establece para el nodo un nuevo valor (sólo para hojas) */
     public void setValue(Object val){
 	this.value = val;
     }
-
-    /* Regresa al hijo derecho del Nodo */
-    public Nodo getHijoIzq(){
-	return this.izq;
-    }
-
-    /* Regresa al hijo derecho del Nodo */
-    public Nodo getHijoDer(){
-	return this.der;
-    }
-
-    /* Establece un nuevo hijo izquierdo para el Nodo */
-    public void setHijoIzq(Nodo i){
-	this.izq = i;
-    }
-
-    /* Establece un nuevo hijo derecho para el Nodo */
-    public void setHijoDer(Nodo d){
-	this.der = d;
-    }
-
-    /* Nos dice si hay hijo izquierdo */
-    public boolean hayIzquierdo(){
-	return this.izq != null;
-    }
-
-    /* Nos dice si hay hijo derecho */
-    public boolean hayDerecho(){
-	return this.der != null;
-    }
-
+    
     /* Imprime el subárbol con este nodo como su raíz 
      * indent - Valor de indentación para que el árbol se vea bien
      * ultimo - Nos dice si el nodo es el último del subárbol (se imprime 
@@ -65,13 +52,9 @@ public class Nodo{
 	    indent += "|  ";
 	}
 	System.out.println(this);
-        if(hayIzquierdo())
-	    if(hayDerecho())
-		this.izq.imprimeSubarbol(indent, false);
-	    else
-		this.izq.imprimeSubarbol(indent, true);
-	if(hayDerecho())
-	    this.der.imprimeSubarbol(indent, true);
+	int longitud = this.hijos.size(); //Número de hijos
+	for (int i = 0; i < longitud; i++)
+	    hijos.get(i).imprimeSubarbol(indent, i == longitud - 1);
     }
 }
 
@@ -217,6 +200,7 @@ class NodoPrint extends Nodo{
 
 /* Clase Hoja. Vacía por ahora. */
 class Hoja extends Nodo{
+
 }
 
 /* Hoja con identificador como elemento */
@@ -224,6 +208,7 @@ class HojaIdentifier extends Hoja{
 
     /* Construye una hoja de identificador */
     HojaIdentifier(String id){
+	super();
 	value = id;
     }
 	
@@ -234,6 +219,7 @@ class HojaEntera extends Hoja
 {
     /* Construye una hoja entera con valor v */
     HojaEntera(Integer v){
+	super();
 	value = v;
     }
 }
@@ -242,7 +228,8 @@ class HojaReal extends Hoja
 {
     /* Construye una hoja entera con valor v */
     HojaReal(Double v){
-	value = v;
+	super();
+       	value = v;
     }
 }
 
@@ -251,6 +238,7 @@ class HojaBoolean extends Hoja
 {
     /* Construye una hoja boolean con valor v */
     HojaBoolean(Boolean v){
+	super();
 	value = v;
     }
 }
@@ -260,6 +248,7 @@ class HojaCadena extends Hoja
 {
     /* Construye una hoja entera con valor v */
     HojaCadena(String v){
+	super();
 	value = v;
     }
 }

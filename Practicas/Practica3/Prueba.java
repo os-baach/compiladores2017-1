@@ -7,11 +7,11 @@ public class Prueba{
     HojaEntera der3 = new HojaEntera(9);
     HojaEntera izq3 = new HojaEntera(10);
 
-    raiz.setHijoIzq(izq1);
-    raiz.setHijoDer(der1);
-    izq1.setHijoIzq(izq2);
-    der1.setHijoIzq(izq3);
-    der1.setHijoDer(der3);
+    raiz.nuevoHijo(izq1);
+    raiz.nuevoHijo(der1);
+    izq1.nuevoHijo(izq2);
+    der1.nuevoHijo(izq3);
+    der1.nuevoHijo(der3);
 
     raiz.imprimeSubarbol("", true);
 }
