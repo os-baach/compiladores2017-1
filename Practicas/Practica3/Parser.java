@@ -620,7 +620,7 @@ boolean doaction;
 //########## USER-SUPPLIED ACTIONS ##########
 case 1:
 //#line 21 "Parser.y"
-{System.out.println("Reconocimiento exitoso");}
+{Nodo n = (Nodo) yyval.obj; System.out.println(n == null); n.imprimeSubarbol("", true); System.out.println("Reconocimiento exitoso");}
 break;
 case 2:
 //#line 22 "Parser.y"
@@ -702,13 +702,21 @@ case 22:
 //#line 68 "Parser.y"
 {Nodo n = (Nodo) val_peek(3).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
+case 23:
+//#line 69 "Parser.y"
+{Nodo n = (Nodo) val_peek(6).obj; Nodo izq = (Nodo) val_peek(5).obj; Nodo der = (Nodo) val_peek(3).obj; n.nuevoHijo(izq); n.nuevoHijo(der); Nodo felse = (Nodo) val_peek(2).obj; n.nuevoHijo(felse); felse.nuevoHijo((Nodo) val_peek(0).obj); yyval = new ParserVal((Object)n);}
+break;
+case 24:
+//#line 70 "Parser.y"
+{Nodo n = (Nodo) val_peek(7).obj; Nodo izq = (Nodo) val_peek(6).obj; Nodo felif = (Nodo) val_peek(4).obj; n.nuevoHijo(izq); n.nuevoHijo(felif); Nodo felse = (Nodo)val_peek(3).obj; n.nuevoHijo(felse); felse.nuevoHijo((Nodo)val_peek(1).obj); yyval = new ParserVal((Object)n);}
+break;
 case 25:
 //#line 73 "Parser.y"
-{yyval = val_peek(2); yyval = val_peek(0);}
+{Nodo n = (Nodo) val_peek(3).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.nuevoHijo(izq); n.nuevoHijo(der); yyval = new ParserVal((Object)n);}
 break;
 case 26:
 //#line 74 "Parser.y"
-{Nodo n = (Nodo) val_peek(3).obj; Nodo izq = (Nodo) val_peek(4).obj; Nodo der = (Nodo) val_peek(2).obj; n.nuevoHijo(izq); n.nuevoHijo(der); Nodo der2 = (Nodo) val_peek(0).obj; n.nuevoHijo(der2); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(4).obj; Nodo hijo = (Nodo) val_peek(3).obj; n.nuevoHijo(hijo); hijo.nuevoHijo((Nodo) val_peek(2).obj); hijo.nuevoHijo((Nodo) val_peek(0).obj); yyval = new ParserVal((Object)n);}
 break;
 case 27:
 //#line 78 "Parser.y"
@@ -926,7 +934,7 @@ case 80:
 //#line 180 "Parser.y"
 {yyval = val_peek(0);}
 break;
-//#line 890 "Parser.java"
+//#line 898 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####

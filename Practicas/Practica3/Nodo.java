@@ -60,142 +60,236 @@ public class Nodo{
 
 /* Clase NodoMas */
 class NodoMas extends Nodo{
-    
+   /* Regresa '+' */
+    @Override
+    public String toString(){
+	return "+";
+    }
 }
 
 /* Clase NodoMenos */
 class NodoMenos extends Nodo{
-    
+    /* Regresa '-' */
+    @Override
+    public String toString(){
+	return "-";
+    }
 }
 
 /* Clase NodoPor */
 class NodoPor extends Nodo{
-    
+    /* Regresa '*' */
+    @Override
+    public String toString(){
+	return "*";
+    }
 }
 
 /* Clase NodoPotencia */
 class NodoPotencia extends Nodo{
-    
+    /* Regresa '**' */
+    @Override
+    public String toString(){
+	return "**";
+    }
 }
 
 /* Clase NodoDiv */
 class NodoDiv extends Nodo{
-    
+    /* Regresa '/' */
+    @Override
+    public String toString(){
+	return "/";
+    }
 }
 
 /* Clase NodoDivEntera */
 class NodoDivEntera extends Nodo{
-    
+    /* Regresa '//' */
+    @Override
+    public String toString(){
+	return "//";
+    }
 }
 
 /* Clase NodoModulo */
 class NodoModulo extends Nodo{
-    
+    /* Regresa '%' */
+    @Override
+    public String toString(){
+	return "%";
+    }
 }
 
 /* Clase NodoEq */
 class NodoEq extends Nodo{
-    
+    /* Regresa '=' */
+    @Override
+    public String toString(){
+	return "=";
+    }
 }
 
 /* Clase NodoMayor */
 class NodoMayor extends Nodo{
-    
+    /* Regresa '>' */
+    @Override
+    public String toString(){
+	return ">";
+    }
 }
 
 /* Clase NodoMenor */
 class NodoMenor extends Nodo{
-    
+    /* Regresa '<' */
+    @Override
+    public String toString(){
+	return "<";
+    }
 }
 
 /* Clase NodoMenorIgual */
 class NodoMenorIgual extends Nodo{
-    
+    /* Regresa '<=' */
+    @Override
+    public String toString(){
+	return "<=";
+    }
 }
 
 /* Clase NodoMayorIgual */
 class NodoMayorIgual extends Nodo{
-    
+    /* Regresa '>=' */
+    @Override
+    public String toString(){
+	return ">=";
+    }
 }
 
 /* Clase NodoIgualIgual */
 class NodoIgualIgual extends Nodo{
-    
+    /* Regresa '==' */
+    @Override
+    public String toString(){
+	return "==";
+    }
 }
 
 /* Clase NodoDistinto */
 class NodoDistinto extends Nodo{
-    
+    /* Regresa '!=' */
+    @Override
+    public String toString(){
+	return "!=";
+    }
 }
 
 /* Clase NodoDecremento */
 class NodoDecremento extends Nodo{
-    
+    /* Regresa '-=' */
+    @Override
+    public String toString(){
+	return "-=";
+    }
 }
 
 /* Clase NodoDecremento */
 class NodoIncremento extends Nodo{
-    
+    /* Regresa '+=' */
+    @Override
+    public String toString(){
+	return "+=";
+    }
 }
 
 /* Clase NodoAnd*/
 class NodoAnd extends Nodo{
-    
+    /* Regresa 'and' */
+    @Override
+    public String toString(){
+	return "and";
+    }
 }
 
 /* Clase NodoOr*/
 class NodoOr extends Nodo{
-    
+    /* Regresa 'or' */
+    @Override
+    public String toString(){
+	return "or";
+    }
 }
 
 /* Clase NodoNot*/
 class NodoNot extends Nodo{
-    
+    /* Regresa 'not' */
+    @Override
+    public String toString(){
+	return "not";
+    }
 }
 
 /* Clase NodoFor*/
 class NodoFor extends Nodo{
-    
+    /* Regresa 'for' */
+    @Override
+    public String toString(){
+	return "for";
+    }
 }
 
 /* Clase NodoWhile*/
 class NodoWhile extends Nodo{
-    
+    /* Regresa 'while' */
+    @Override
+    public String toString(){
+	return "while";
+    }
 }
 
 /* Clase NodoIf*/
 class NodoIf extends Nodo{
-    
+    /* Regresa 'if' */
+    @Override
+    public String toString(){
+	return "if";
+    }
 }
 
 /* Clase NodoElse*/
 class NodoElse extends Nodo{
-    
+    /* Regresa 'else' */
+    @Override
+    public String toString(){
+	return "else";
+    }
 }
 
 /* Clase NodoElif*/
 class NodoElif extends Nodo{
-    
+    /* Regresa 'elif' */
+    @Override
+    public String toString(){
+	return "elif";
+    }
 }
 
 /* Clase NodoIn*/
 class NodoIn extends Nodo{
-    
-}
-
-/* Clase NodoDosPuntos*/
-class NodoDosPuntos extends Nodo{
-    
-}
-
-/* Clase NodoDosPuntos*/
-class NodoPuntoYComa extends Nodo{
-    
+    /* Regresa 'in' */
+    @Override
+    public String toString(){
+	return "in";
+    }
 }
 
 /* Clase NodoPrint. No sé si esta es necesaria. */
 class NodoPrint extends Nodo{
-    
+    /* Regresa 'print' */
+    @Override
+    public String toString(){
+	return "print";
+    }
 }
 
 /* Clase Hoja. Vacía por ahora. */

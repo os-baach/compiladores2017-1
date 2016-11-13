@@ -18,7 +18,7 @@
 %%
 
  /* file_input: (NEWLINE | stmt)* ENDMARKER  */
-file_input: {System.out.println("Reconocimiento exitoso");}
+file_input: {Nodo n = (Nodo) $$.obj; System.out.println(n == null); n.imprimeSubarbol("", true); System.out.println("Reconocimiento exitoso");}
 | aux0 {$$ = $1;} 
 ;
 
@@ -66,12 +66,12 @@ compound_stmt: if_stmt {$$ = $1;}
 
 /* if_stmt: 'if' test ':' suite ('elif' test ':' suite)* ['else' ':' suite]  */
 if_stmt: IF test DOSPUNTOS suite {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; Nodo der = (Nodo) $4.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
-| IF test DOSPUNTOS suite ELSE DOSPUNTOS suite
-| IF test DOSPUNTOS suite aux1 ELSE DOSPUNTOS suite 
+| IF test DOSPUNTOS suite ELSE DOSPUNTOS suite {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; Nodo der = (Nodo) $4.obj; n.nuevoHijo(izq); n.nuevoHijo(der); Nodo felse = (Nodo) $5.obj; n.nuevoHijo(felse); felse.nuevoHijo((Nodo) $7.obj); $$ = new ParserVal((Object)n);}
+| IF test DOSPUNTOS suite aux1 ELSE DOSPUNTOS suite {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; Nodo felif = (Nodo) $4.obj; n.nuevoHijo(izq); n.nuevoHijo(felif); Nodo felse = (Nodo)$5.obj; n.nuevoHijo(felse); felse.nuevoHijo((Nodo)$7.obj); $$ = new ParserVal((Object)n);}
 ;
 
-aux1: ELIF test DOSPUNTOS suite {$$ = $2; $$ = $4;}
-| aux1 ELIF test DOSPUNTOS suite {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); Nodo der2 = (Nodo) $5.obj; n.nuevoHijo(der2); $$ = new ParserVal((Object)n);}
+aux1: ELIF test DOSPUNTOS suite {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; Nodo der = (Nodo) $4.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
+| aux1 ELIF test DOSPUNTOS suite {Nodo n = (Nodo) $1.obj; Nodo hijo = (Nodo) $2.obj; n.nuevoHijo(hijo); hijo.nuevoHijo((Nodo) $3.obj); hijo.nuevoHijo((Nodo) $5.obj); $$ = new ParserVal((Object)n);}
 ;
 
 /* while_stmt: 'while' test ':' suite  */
