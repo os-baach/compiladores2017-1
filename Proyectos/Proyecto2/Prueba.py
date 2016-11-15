@@ -1,4 +1,5 @@
 2+3*1
+x=2
 if True :
 	print x
 	x = 21

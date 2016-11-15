@@ -1,0 +1,161 @@
+   0  $accept : S $end
+
+   1  S : E
+
+   2  E : E MAS T
+   3    | E MENOS T
+   4    | T
+
+   5  T : T MULT F
+   6    | T DIV F
+   7    | F
+
+   8  F : NUMBER
+   9    | MENOS NUMBER
+
+state 0
+	$accept : . S $end  (0)
+
+	NUMBER  shift 1
+	MENOS  shift 2
+	.  error
+
+	S  goto 3
+	F  goto 4
+	T  goto 5
+	E  goto 6
+
+
+state 1
+	F : NUMBER .  (8)
+
+	.  reduce 8
+
+
+state 2
+	F : MENOS . NUMBER  (9)
+
+	NUMBER  shift 7
+	.  error
+
+
+state 3
+	$accept : S . $end  (0)
+
+	$end  accept
+
+
+state 4
+	T : F .  (7)
+
+	.  reduce 7
+
+
+state 5
+	E : T .  (4)
+	T : T . MULT F  (5)
+	T : T . DIV F  (6)
+
+	MULT  shift 8
+	DIV  shift 9
+	$end  reduce 4
+	MAS  reduce 4
+	MENOS  reduce 4
+
+
+state 6
+	S : E .  (1)
+	E : E . MAS T  (2)
+	E : E . MENOS T  (3)
+
+	MAS  shift 10
+	MENOS  shift 11
+	$end  reduce 1
+
+
+state 7
+	F : MENOS NUMBER .  (9)
+
+	.  reduce 9
+
+
+state 8
+	T : T MULT . F  (5)
+
+	NUMBER  shift 1
+	MENOS  shift 2
+	.  error
+
+	F  goto 12
+
+
+state 9
+	T : T DIV . F  (6)
+
+	NUMBER  shift 1
+	MENOS  shift 2
+	.  error
+
+	F  goto 13
+
+
+state 10
+	E : E MAS . T  (2)
+
+	NUMBER  shift 1
+	MENOS  shift 2
+	.  error
+
+	F  goto 4
+	T  goto 14
+
+
+state 11
+	E : E MENOS . T  (3)
+
+	NUMBER  shift 1
+	MENOS  shift 2
+	.  error
+
+	F  goto 4
+	T  goto 15
+
+
+state 12
+	T : T MULT F .  (5)
+
+	.  reduce 5
+
+
+state 13
+	T : T DIV F .  (6)
+
+	.  reduce 6
+
+
+state 14
+	E : E MAS T .  (2)
+	T : T . MULT F  (5)
+	T : T . DIV F  (6)
+
+	MULT  shift 8
+	DIV  shift 9
+	$end  reduce 2
+	MAS  reduce 2
+	MENOS  reduce 2
+
+
+state 15
+	E : E MENOS T .  (3)
+	T : T . MULT F  (5)
+	T : T . DIV F  (6)
+
+	MULT  shift 8
+	DIV  shift 9
+	$end  reduce 3
+	MAS  reduce 3
+	MENOS  reduce 3
+
+
+7 terminals, 5 nonterminals
+10 grammar rules, 16 states

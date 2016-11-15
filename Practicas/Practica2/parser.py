@@ -77,3 +77,9 @@ def parse(cadena):
     else:
         return False                
                     
+if(
+        parse(input("Escriba la palabra a analizar\n"))
+):
+    print("Rec exitoso");
+else :
+    print("Palabra no puede ser generada con la gramática");

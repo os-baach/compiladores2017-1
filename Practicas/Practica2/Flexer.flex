@@ -27,7 +27,7 @@ DIV = ("/")
 
 %%
 
-{NUMBER}    { return Parser.NUMBER;}
+{NUMBER}    { yyparser.yylval=new ParserVal(Integer.parseInt(yytext())); return Parser.NUMBER;}
 {MAS}	    { return Parser.MAS; }
 {MENOS}	    { return Parser.MENOS; }
 {MULT}	    { return Parser.MULT; }

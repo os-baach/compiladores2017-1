@@ -22,7 +22,7 @@ T: T MULT F {$$ = $1;}
 ;
 
 F: NUMBER {$$ = $1;}
-| MENOS NUMBER {$$ = $2;}
+| MENOS NUMBER {$$ = -1*$2;}
 ;
 
 %%
