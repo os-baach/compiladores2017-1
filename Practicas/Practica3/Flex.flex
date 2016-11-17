@@ -184,10 +184,10 @@ case ")":
 return Parser.PARENTESISD;
 
 case ":":
-yyparser.yylval = new ParserVal(new NodoDosPuntos()); return Parser.DOSPUNTOS;
+return Parser.DOSPUNTOS;
 
 case ";":
-yyparser.yylval = new ParserVal(new NodoPuntoYComa()); return Parser.PUNTOYCOMA;
+return Parser.PUNTOYCOMA;
 
 }
 }}
