@@ -16,16 +16,16 @@
 
  /*Gramática*/
 %%
-
  /* file_input: (NEWLINE | stmt)* ENDMARKER  */
 file_input: {Nodo n = (Nodo) $$.obj; System.out.println(n == null); n.imprimeSubarbol("", true); System.out.println("Reconocimiento exitoso");}
-| aux0 {$$ = $1;} 
+| aux0 {Nodo n = (Nodo) $$.obj; System.out.println(n == null); n.imprimeSubarbol("", true); System.out.println("Reconocimiento exitoso");} 
 ;
 
-aux0: NEWLINE
+aux0: NEWLINE   
 | stmt {$$ = $1;}
-| aux0 NEWLINE {$$ = $1;}
-| aux0 stmt {$$ = $1;}
+| aux0 stmt 
+| aux0 NEWLINE   
+
 ;
 
 /* stmt: simple_stmt | compound_stmt  */
@@ -34,7 +34,8 @@ stmt: simple_stmt {$$ = $1;}
 ;
 
 /* simple_stmt: small_stmt [';'] NEWLINE  */
-simple_stmt: small_stmt NEWLINE {$$ = $1;}
+simple_stmt: small_stmt NEWLINE {$$ = $1;}  
+
 | small_stmt PUNTOYCOMA NEWLINE {$$ = $1;}
 ;
 
@@ -55,7 +56,7 @@ augassign: INCREMENTO {$$ = $1;}
 ;
 
 /* print_stmt: 'print' [test] */
-print_stmt: PRINT {$$ = $1;}
+print_stmt: PRINT 
 | PRINT test {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; n.nuevoHijo(izq); $$ = new ParserVal((Object)n);}
 ;
 
@@ -135,8 +136,8 @@ comp_op: MENOR {$$ = $1;}
 ;
 
 /* expr: term (('+'|'-') term)*  */
-expr: term {$$ = $1;}
-| term aux6 {$$ = $1; $$ = $2;}
+expr: term
+| term aux6 {Nodo n = (Nodo) $2.obj; Nodo der = (Nodo) $1.obj; n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
 ;
 
 aux6: MAS term {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
@@ -147,7 +148,7 @@ aux6: MAS term {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.nuevoHijo(de
 
 /* term: factor (('*'|'/'|'%'|'//') factor)*  */
 term: factor {$$ = $1;}
-| factor aux7 {$$ = $1; $$ = $2;}
+| factor aux7 {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
 ;
 
 aux7: POR factor {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
@@ -201,6 +202,7 @@ public void yyerror (String error) {
 /* lexer is created in the constructor */
 public Parser(Reader r) {
   lexer = new Flexer(r, this);
+  yydebug = true;
 }
 /* that's how you use the parser */
 public static void main(String args[]) throws IOException {

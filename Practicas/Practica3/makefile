@@ -4,10 +4,10 @@ test:
 	java Parser Prueba.txt
 
 clean:
-	rm *.class
-	rm *~
-	rm *.output
 	rm Parser.java
 	rm ParserTokens.java
 	rm ParserVal.java
 	rm Flexer.java
+	rm *.output
+	rm *.class
+	rm *~
