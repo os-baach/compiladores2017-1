@@ -13,7 +13,7 @@ public class Prueba{
     der1.nuevoHijo(izq3);
     der1.nuevoHijo(der3);
 
-    raiz.imprimeSubarbol("", true);
+    System.out.println(raiz.imprimeSubarbol());
 }
 
 }

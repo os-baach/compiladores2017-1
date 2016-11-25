@@ -42,19 +42,11 @@ public class Nodo{
      * ultimo - Nos dice si el nodo es el último del subárbol (se imprime 
        distinto)
      */
-    public void imprimeSubarbol(String indent, boolean ultimo){
-	System.out.print(indent);
-	if(ultimo){
-	    System.out.print("\\-");
-	    indent += "  ";
-	}else{
-	    System.out.print("|-");
-	    indent += "|  ";
-	}
-	System.out.println(this);
-	int longitud = this.hijos.size(); //Número de hijos
-	for (int i = 0; i < longitud; i++)
-	    hijos.get(i).imprimeSubarbol(indent, i == longitud - 1);
+    public String imprimeSubarbol(){
+	String regreso = this.toString(); // Cadena a regresar
+	for (Nodo hijo: this.hijos)
+	    regreso += "(" + hijo.imprimeSubarbol() + ") " ;
+	return regreso;
     }
 }
 
