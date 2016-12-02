@@ -94,20 +94,20 @@ test: or_test {$$ = $1;}
 
 /* or_test: and_test ('or' and_test)* */
 or_test: and_test {$$ = $1;}
-| aux3 and_test {$$ = $1; $$ = $2;}
+| and_test aux3 {$$ = $1; $$ = $2;}
 ;
 
-aux3: OR and_test {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
-| and_test OR aux3 {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);} 
+aux3: OR and_test {Nodo n = (Nodo) $2.obj; Nodo der = (Nodo) $1.obj; n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
+| aux3 OR and_test {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);} 
 ;
 
 /* and_test: not_test ('and' not_test)* */
 and_test: not_test {$$ = $1;}
-| aux4 not_test {$$ = $1; $$ = $2;}
+| not_test aux4 {$$ = $1; $$ = $2;}
 ;
 
-aux4: AND not_test {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
-| not_test AND aux4 {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);} 
+aux4: AND not_test {Nodo n = (Nodo) $2.obj; Nodo der = (Nodo) $1.obj; n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
+| aux4 AND not_test {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);} 
 ;
 
 /* not_test: 'not' not_test | comparison  */
@@ -117,11 +117,11 @@ not_test: NOT not_test {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; n.nuev
 
 /* comparison: expr (comp_op expr)* */
 comparison: expr {$$ = $1;}
-| aux5 expr {$$ = $1; $$ = $2;}
+| expr aux5 {$$ = $1; $$ = $2;}
 ;
 
 aux5: comp_op expr {$$ = $1;}
-| expr comp_op aux5 {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);} 
+| aux5 comp_op expr {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);} 
 ;
 
 /* comp_op: '<'|'>'|'=='|'>='|'<='|'!='|'in'|'not' 'in'|'=' */
@@ -137,28 +137,28 @@ comp_op: MENOR {$$ = $1;}
 
 /* expr: term (('+'|'-') term)*  */
 expr: term {$$ = $1;}
-| aux6 term {Nodo n = (Nodo) $2.obj; Nodo hijo = (Nodo) $1.obj; n.nuevoHijo(hijo); $$ = new ParserVal((Object)n);}
+| term aux6 {Nodo n = (Nodo) $2.obj; Nodo hijo = (Nodo) $1.obj; n.nuevoHijo(hijo); $$ = new ParserVal((Object)n);}
 ;
 
 aux6: MAS term {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
 | MENOS term {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
-| term MAS aux6 {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
-| term MENOS aux6 {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
+| aux6 MAS term {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
+| aux6 MENOS term {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
 ;
 
 /* term: factor (('*'|'/'|'%'|'//') factor)*  */
 term: factor {$$ = $1;}
-| aux7 factor {Nodo n = (Nodo) $1.obj; Nodo hijo = (Nodo) $2.obj; n.nuevoHijo(hijo); $$ = new ParserVal((Object)n);}
+| factor aux7 {Nodo n = (Nodo) $1.obj; Nodo hijo = (Nodo) $2.obj; n.nuevoHijo(hijo); $$ = new ParserVal((Object)n);}
 ;
 
 aux7: POR factor {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
 | DIV factor {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
 | MODULO factor {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
 | DIVENTERA factor {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
-| factor POR aux7 {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
-| factor DIV aux7 {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
-| factor MODULO aux7 {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
-| factor DIVENTERA aux7 {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
+| aux7 POR factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
+| aux7 DIV factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
+| aux7 MODULO factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
+| aux7 DIVENTERA factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.nuevoHijo(izq); n.nuevoHijo(der); $$ = new ParserVal((Object)n);}
 ;
 
 /* factor: ('+'|'-') factor | power  */
