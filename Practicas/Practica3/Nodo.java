@@ -27,9 +27,14 @@ public class Nodo{
 	return this.hijos;
     }
 
-    /* Le pone al nodo un nuevo hijo */
-    public void nuevoHijo(Nodo n){
-	this.hijos.add(n);
+    /* Mete un hijo izquierdo en la lista */
+    public void meteHijoIzq(Nodo izq){
+	this.hijos.add(0, izq);
+    }
+    
+    /* Le pone al nodo un nuevo hijo a la derecha */
+    public void meteHijoIzq(Nodo der){
+	this.hijos.add(der);
     }
     
     /* Establece para el nodo un nuevo valor (sólo para hojas) */
