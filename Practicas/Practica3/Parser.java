@@ -825,11 +825,11 @@ case 55:
 break;
 case 56:
 //#line 140 "Parser.y"
-{Nodo n = (Nodo) val_peek(0).obj; Nodo hijo = (Nodo) val_peek(1).obj; n.meteHijoIzq(hijo); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(0).obj; Nodo hijo = (Nodo) val_peek(1).obj; n.meteHijoDer(hijo); yyval = new ParserVal((Object)n);}
 break;
 case 57:
 //#line 143 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoDer(der); yyval = new ParserVal((Object)n);}
 break;
 case 58:
 //#line 144 "Parser.y"
@@ -837,11 +837,11 @@ case 58:
 break;
 case 59:
 //#line 145 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(izq); n.meteHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(der); n.meteHijoDer(izq); yyval = new ParserVal((Object)n);}
 break;
 case 60:
 //#line 146 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(izq); n.meteHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(der); n.meteHijoDer(izq); yyval = new ParserVal((Object)n);}
 break;
 case 61:
 //#line 150 "Parser.y"
@@ -849,11 +849,11 @@ case 61:
 break;
 case 62:
 //#line 151 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo hijo = (Nodo) val_peek(0).obj; n.meteHijoIzq(hijo); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(0).obj; Nodo hijo = (Nodo) val_peek(1).obj; n.meteHijoDer(hijo); yyval = new ParserVal((Object)n);}
 break;
 case 63:
 //#line 154 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijo(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoDer(der); yyval = new ParserVal((Object)n);}
 break;
 case 64:
 //#line 155 "Parser.y"
@@ -869,19 +869,19 @@ case 66:
 break;
 case 67:
 //#line 158 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(izq); n.meteHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(der); n.meteHijoDer(izq); yyval = new ParserVal((Object)n);}
 break;
 case 68:
 //#line 159 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(izq); n.meteHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(der); n.meteHijoDer(izq); yyval = new ParserVal((Object)n);}
 break;
 case 69:
 //#line 160 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(izq); n.meteHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(der); n.meteHijoDer(izq); yyval = new ParserVal((Object)n);}
 break;
 case 70:
 //#line 161 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(izq); n.meteHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(der); n.meteHijoDer(izq); yyval = new ParserVal((Object)n);}
 break;
 case 71:
 //#line 165 "Parser.y"
@@ -901,7 +901,7 @@ case 74:
 break;
 case 75:
 //#line 172 "Parser.y"
-{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(izq); n.meteHijoDer(der); yyval = new ParserVal((Object)n);}
+{Nodo n = (Nodo) val_peek(1).obj; Nodo izq = (Nodo) val_peek(2).obj; Nodo der = (Nodo) val_peek(0).obj; n.meteHijoIzq(der); n.meteHijoDer(izq); yyval = new ParserVal((Object)n);}
 break;
 case 76:
 //#line 177 "Parser.y"

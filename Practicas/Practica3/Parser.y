@@ -137,28 +137,28 @@ comp_op: MENOR {$$ = $1;}
 
 /* expr: term (('+'|'-') term)*  */
 expr: term {$$ = $1;}
-| term aux6 {Nodo n = (Nodo) $2.obj; Nodo hijo = (Nodo) $1.obj; n.meteHijoIzq(hijo); $$ = new ParserVal((Object)n);}
+| term aux6 {Nodo n = (Nodo) $2.obj; Nodo hijo = (Nodo) $1.obj; n.meteHijoDer(hijo); $$ = new ParserVal((Object)n);}
 ;
 
-aux6: MAS term {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.meteHijoIzq(der); $$ = new ParserVal((Object)n);}
+aux6: MAS term {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
 | MENOS term {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
-| aux6 MAS term {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
-| aux6 MENOS term {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
+| aux6 MAS term {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(der); n.meteHijoDer(izq); $$ = new ParserVal((Object)n);}
+| aux6 MENOS term {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(der); n.meteHijoDer(izq); $$ = new ParserVal((Object)n);}
 ;
 
 /* term: factor (('*'|'/'|'%'|'//') factor)*  */
 term: factor {$$ = $1;}
-| factor aux7 {Nodo n = (Nodo) $1.obj; Nodo hijo = (Nodo) $2.obj; n.meteHijoIzq(hijo); $$ = new ParserVal((Object)n);}
+| factor aux7 {Nodo n = (Nodo) $2.obj; Nodo hijo = (Nodo) $1.obj; n.meteHijoDer(hijo); $$ = new ParserVal((Object)n);}
 ;
 
-aux7: POR factor {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.meteHijo(der); $$ = new ParserVal((Object)n);}
+aux7: POR factor {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
 | DIV factor {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
 | MODULO factor {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
 | DIVENTERA factor {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
-| aux7 POR factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
-| aux7 DIV factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
-| aux7 MODULO factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
-| aux7 DIVENTERA factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
+| aux7 POR factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(der); n.meteHijoDer(izq); $$ = new ParserVal((Object)n);}
+| aux7 DIV factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(der); n.meteHijoDer(izq); $$ = new ParserVal((Object)n);}
+| aux7 MODULO factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(der); n.meteHijoDer(izq); $$ = new ParserVal((Object)n);}
+| aux7 DIVENTERA factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(der); n.meteHijoDer(izq); $$ = new ParserVal((Object)n);}
 ;
 
 /* factor: ('+'|'-') factor | power  */
@@ -169,7 +169,7 @@ factor: MAS factor {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; n.meteHijo
 
 /* power: atom ['**' factor]  */
 power: atom {$$ = $1;}
-| atom POTENCIA factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
+| atom POTENCIA factor {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(der); n.meteHijoDer(izq); $$ = new ParserVal((Object)n);}
 ;
 
 /* atom: ENTERO | REAL | CADENA | BOOLEAN | IDENTIFIER  */
