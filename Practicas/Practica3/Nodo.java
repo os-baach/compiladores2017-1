@@ -33,8 +33,12 @@ public class Nodo{
     }
     
     /* Le pone al nodo un nuevo hijo a la derecha */
-    public void meteHijoIzq(Nodo der){
-	this.hijos.add(der);
+    public void meteHijoDer(Nodo der){
+	this.hijos.add(1,der);
+    }
+
+    public void meteHijo(Nodo nodo){
+	this.hijos.add(nodo);
     }
     
     /* Establece para el nodo un nuevo valor (sólo para hojas) */
