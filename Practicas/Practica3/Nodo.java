@@ -27,14 +27,30 @@ public class Nodo{
 	return this.hijos;
     }
 
+    /* Nos dice si el nodo tiene hijo izquierdo */
+    public boolean hayIzquierdo(){
+	return this.hijos.size() >= 1;
+    }
+
+    /* Nos dice si el nodo tiene hijo derecho */
+    public boolean hayDerecho(){
+	return this.hijos.size() >= 2;
+    }
+    
     /* Mete un hijo izquierdo en la lista */
     public void meteHijoIzq(Nodo izq){
-	this.hijos.add(0, izq);
+	if(!hayIzquierdo())
+	    this.hijos.add(0, izq);
+	else
+	    this.hijos.get(0).meteHijoIzq(izq);
     }
     
     /* Le pone al nodo un nuevo hijo a la derecha */
     public void meteHijoDer(Nodo der){
-	this.hijos.add(1,der);
+	if(!hayDerecho())
+	    this.hijos.add(der);
+	else
+	    this.hijos.get(1).meteHijoDer(der);
     }
 
     public void meteHijo(Nodo nodo){
