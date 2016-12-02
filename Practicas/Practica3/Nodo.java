@@ -69,8 +69,10 @@ public class Nodo{
      */
     public String imprimeSubarbol(){
 	String regreso = this.toString(); // Cadena a regresar
-	for (Nodo hijo: this.hijos)
-	    regreso += "(" + hijo.imprimeSubarbol() + ") " ;
+	for(int counter = this.hijos.size()-1; counter >= 0; counter--){
+	    Nodo der = this.hijos.get(counter);
+	    regreso += "(" + der.imprimeSubarbol() + ") ";
+	}
 	return regreso;
     }
 }

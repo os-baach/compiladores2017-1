@@ -66,7 +66,7 @@ compound_stmt: if_stmt {$$ = $1;}
 ;
 
 /* if_stmt: 'if' test ':' suite ('elif' test ':' suite)* ['else' ':' suite]  */
-if_stmt: IF test DOSPUNTOS suite {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; Nodo der = (Nodo) $4.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
+if_stmt: IF test DOSPUNTOS suite {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; Nodo der = (Nodo) $4.obj; n.meteHijoIzq(der); n.meteHijoDer(izq); $$ = new ParserVal((Object)n);}
 | IF test DOSPUNTOS suite ELSE DOSPUNTOS suite {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; Nodo der = (Nodo) $4.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); Nodo felse = (Nodo) $5.obj; n.meteHijo(felse); felse.meteHijo((Nodo) $7.obj); $$ = new ParserVal((Object)n);}
 | IF test DOSPUNTOS suite aux1 ELSE DOSPUNTOS suite {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; Nodo felif = (Nodo) $4.obj; n.meteHijoIzq(izq); n.meteHijoDer(felif); Nodo felse = (Nodo)$5.obj; n.meteHijo(felse); felse.meteHijo((Nodo)$7.obj); $$ = new ParserVal((Object)n);}
 ;
@@ -85,7 +85,7 @@ suite: simple_stmt {$$ = $1;}
 ;        
 
 aux2: stmt {$$ = $1;}
-| aux2 stmt {$$ = $1; $$ = $2;}
+| aux2 stmt {Nodo n = (Nodo) $1.obj; Nodo hijo = (Nodo) $2.obj; n.meteHijoDer(hijo); $$ = new ParserVal((Object)n);}
 ;
 
 /* test: or_test  */
@@ -94,20 +94,20 @@ test: or_test {$$ = $1;}
 
 /* or_test: and_test ('or' and_test)* */
 or_test: and_test {$$ = $1;}
-| and_test aux3 {$$ = $1; $$ = $2;}
+| and_test aux3 {Nodo n = (Nodo) $2.obj; Nodo hijo = (Nodo) $1.obj; n.meteHijoDer(hijo); $$ = new ParserVal((Object)n);}
 ;
 
-aux3: OR and_test {Nodo n = (Nodo) $2.obj; Nodo der = (Nodo) $1.obj; n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
-| aux3 OR and_test {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); $$ = new ParserVal((Object)n);} 
+aux3: OR and_test {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
+| aux3 OR and_test {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(der); n.meteHijoDer(izq); $$ = new ParserVal((Object)n);} 
 ;
 
 /* and_test: not_test ('and' not_test)* */
 and_test: not_test {$$ = $1;}
-| not_test aux4 {$$ = $1; $$ = $2;}
+| not_test aux4 {Nodo n = (Nodo) $2.obj; Nodo hijo = (Nodo) $1.obj; n.meteHijoDer(hijo); $$ = new ParserVal((Object)n);}
 ;
 
-aux4: AND not_test {Nodo n = (Nodo) $2.obj; Nodo der = (Nodo) $1.obj; n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
-| aux4 AND not_test {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); $$ = new ParserVal((Object)n);} 
+aux4: AND not_test {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
+| aux4 AND not_test {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(der); n.meteHijoDer(izq); $$ = new ParserVal((Object)n);} 
 ;
 
 /* not_test: 'not' not_test | comparison  */
@@ -117,10 +117,10 @@ not_test: NOT not_test {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; n.mete
 
 /* comparison: expr (comp_op expr)* */
 comparison: expr {$$ = $1;}
-| expr aux5 {$$ = $1; $$ = $2;}
+| expr aux5 {Nodo n = (Nodo) $2.obj; Nodo hijo = (Nodo) $1.obj; n.meteHijoDer(hijo); $$ = new ParserVal((Object)n);}
 ;
 
-aux5: comp_op expr {$$ = $1;}
+aux5: comp_op expr {Nodo n = (Nodo) $1.obj; Nodo der = (Nodo) $2.obj; n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
 | aux5 comp_op expr {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); $$ = new ParserVal((Object)n);} 
 ;
 
