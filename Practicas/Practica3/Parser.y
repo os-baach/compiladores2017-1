@@ -76,7 +76,7 @@ aux1: ELIF test DOSPUNTOS suite {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.ob
 ;
 
 /* while_stmt: 'while' test ':' suite  */
-while_stmt: WHILE test DOSPUNTOS suite {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; Nodo der = (Nodo) $4.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
+while_stmt: WHILE test DOSPUNTOS suite {Nodo n = (Nodo) $1.obj; Nodo izq = (Nodo) $2.obj; Nodo der = (Nodo) $4.obj; n.meteHijoIzq(der); n.meteHijoDer(izq); $$ = new ParserVal((Object)n);}
 ;
 
 /* suite: simple_stmt | NEWLINE INDENT stmt+ DEDENT  */
@@ -197,7 +197,7 @@ private int yylex () {
 }
 /* error reporting */
 public void yyerror (String error) {
-  System.err.println ("Error: " + error);
+  System.err.println ("Error: " + lexer.yytext());
 }
 /* lexer is created in the constructor */
 public Parser(Reader r) {
