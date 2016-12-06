@@ -104,10 +104,10 @@ TAB = "\t"
 IDENTIFICADOR = ({LETRA} | _) ({LETRA} | {DIGITO} | _)*
 ENTERO = [1-9]{DIGITO}* | 0
 REAL = "."{DIGITO}+ | {ENTERO}"."{DIGITO}+ | {ENTERO}"."
-CARACTER_VALIDO = [^\r\n]
+CARACTER_VALIDO = [^\r\n]--["\""|"\\"]
 KEYWORD = "and" | "or" | "not" | "for" | "while" | "if" | "else" | "elif" | "print" | "in"
 BOOLEANO = "True" | "False"
-CADENA = "\""{CARACTER_VALIDO}*"\""
+CADENA = "\""{CARACTER_VALIDO}*\"
 OPERADOR = "+" | "-" | "*" | "**" | "/" | "//" | "%" | ">" | "<" | "<=" | ">=" | "==" | "!=" | "-=" | "+=" | "="
 SEPARADOR = "(" | ")" | ":" | ";"
 TODOS_CARACTERES = [^\r\n]
