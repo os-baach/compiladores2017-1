@@ -5,7 +5,8 @@ import java.util.LinkedList;
 public class Nodo{
     Object value; /* Valor dentro del nodo */
     List<Nodo> hijos; /* Hijos del nodo */
-
+    Nodo padre; /* El papá */
+    
     /* Inicializa la lista de hijos del nodo */
     public Nodo(){
 	this.hijos = new LinkedList<Nodo>();
@@ -39,22 +40,36 @@ public class Nodo{
     
     /* Mete un hijo izquierdo en la lista */
     public void meteHijoIzq(Nodo izq){
-	if(!hayIzquierdo())
+	if(!hayIzquierdo()){
 	    this.hijos.add(0, izq);
+	    izq.padre = this;
+	}
 	else
 	    this.hijos.get(0).meteHijoIzq(izq);
     }
     
     /* Le pone al nodo un nuevo hijo a la derecha */
     public void meteHijoDer(Nodo der){
-	if(!hayDerecho())
+	if(!hayDerecho()){
 	    this.hijos.add(der);
+	    der.padre = this;
+	}
 	else
 	    this.hijos.get(1).meteHijoDer(der);
     }
 
+    public void meteInicio(Nodo nodo){
+	this.hijos.add(0,nodo);
+    }
+
     public void meteHijo(Nodo nodo){
 	this.hijos.add(nodo);
+	nodo.padre = this;
+    }
+
+    /* Regresa a El papá */
+    public Nodo getPadre(){
+	return this.padre;
     }
     
     /* Establece para el nodo un nuevo valor (sólo para hojas) */

@@ -324,8 +324,8 @@ return Parser.NEWLINE;
 	yybegin(CONTADOR);}else{
 	System.out.print("CADENA(" + quitaComillas(yytext()) + ")");
 	espacio = true;
-	return Parser.CADENA;
-    }}
+	yyparser.yylval = new ParserVal(new HojaIdentifier(yytext())); return Parser.CADENA;}
+    }
 
 {IDENTIFICADOR}	{if(espacio){
 	System.err.println("Átomo mal formado en la línea " + (yyline+1) + ".");
