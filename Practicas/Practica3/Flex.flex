@@ -367,4 +367,4 @@ yypushback(yylength());
 		 }}
 }
 
-<<EOF>> {dedentAll(); System.exit(0);}
+<<EOF>> {dedentAll(); return 0;}

@@ -27,9 +27,34 @@ public class Nodo{
 	return this.hijos;
     }
 
-    /* Le pone al nodo un nuevo hijo */
-    public void nuevoHijo(Nodo n){
-	this.hijos.add(n);
+    /* Nos dice si el nodo tiene hijo izquierdo */
+    public boolean hayIzquierdo(){
+	return this.hijos.size() >= 1;
+    }
+
+    /* Nos dice si el nodo tiene hijo derecho */
+    public boolean hayDerecho(){
+	return this.hijos.size() >= 2;
+    }
+    
+    /* Mete un hijo izquierdo en la lista */
+    public void meteHijoIzq(Nodo izq){
+	if(!hayIzquierdo())
+	    this.hijos.add(0, izq);
+	else
+	    this.hijos.get(0).meteHijoIzq(izq);
+    }
+    
+    /* Le pone al nodo un nuevo hijo a la derecha */
+    public void meteHijoDer(Nodo der){
+	if(!hayDerecho())
+	    this.hijos.add(der);
+	else
+	    this.hijos.get(1).meteHijoDer(der);
+    }
+
+    public void meteHijo(Nodo nodo){
+	this.hijos.add(nodo);
     }
     
     /* Establece para el nodo un nuevo valor (sólo para hojas) */
@@ -42,19 +67,13 @@ public class Nodo{
      * ultimo - Nos dice si el nodo es el último del subárbol (se imprime 
        distinto)
      */
-    public void imprimeSubarbol(String indent, boolean ultimo){
-	System.out.print(indent);
-	if(ultimo){
-	    System.out.print("\\-");
-	    indent += "  ";
-	}else{
-	    System.out.print("|-");
-	    indent += "|  ";
+    public String imprimeSubarbol(){
+	String regreso = this.toString(); // Cadena a regresar
+	for(int counter = this.hijos.size()-1; counter >= 0; counter--){
+	    Nodo der = this.hijos.get(counter);
+	    regreso += "(" + der.imprimeSubarbol() + ") ";
 	}
-	System.out.println(this);
-	int longitud = this.hijos.size(); //Número de hijos
-	for (int i = 0; i < longitud; i++)
-	    hijos.get(i).imprimeSubarbol(indent, i == longitud - 1);
+	return regreso;
     }
 }
 
