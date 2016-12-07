@@ -8,7 +8,20 @@ public abstract class VisitantePrint implements Visitante {
     @Override
     public void visita(NodoMas n){
 	System.out.print("Nodo Mas");
-	//falta lo de los hijos
+	Nodo izq = n.hijos.get(0);
+	Nodo der = n.hijos.get(1);
+	String valor = (String)n.value;
+	if(izq.value instanceof Boolean && der.value instanceof Boolean)
+	    n.setValue(Boolean.parseBoolean(valor));	
+	if(izq.value instanceof Integer && der.value instanceof Integer)
+	    n.setValue(Integer.parseInt(valor));
+	if(izq.value instanceof Double && der.value instanceof Double)
+	    n.setValue(Double.parseDouble(valor));
+	if(izq.value instanceof String && der.value instanceof String) {
+	    n.setValue(valor);
+	} else {
+	    System.out.print("Error de tipos: no son cadenas");
+	}
     }
 
     @Override
