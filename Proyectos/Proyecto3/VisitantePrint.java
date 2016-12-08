@@ -1,5 +1,7 @@
 public class VisitantePrint implements Visitante {
-    
+
+    private TablaOp tabla = new TablaOp();
+
     @Override
     public void visita(Nodo n){
 	System.out.print("Nodo Genérico");
@@ -10,276 +12,66 @@ public class VisitantePrint implements Visitante {
 	System.out.println("Nodo Mas");
 	Nodo izq = n.hijos.get(0);
 	Nodo der = n.hijos.get(1);
-	String valor = (String)n.value;
-	if(izq.value instanceof Boolean){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: suma incorrecta");
-	}
-	if(izq.value instanceof Integer){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		//System.out.println("Sirve");
-	    //n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: suma incorrecta");
-	}
-	if(izq.value instanceof Double){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: suma incorrecta");
-	}
-	if(izq.value instanceof String && der.value instanceof String) {
-	    n.setValue(valor);
-	} else {
-	    System.out.print("Error de tipos: suma incorrecto");
-	}
+	Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("MAS", t1, t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoMenos n){
-	System.out.print("Nodo Menos");
+	System.out.println("Nodo Menos");
 	Nodo izq = n.hijos.get(0);
 	Nodo der = n.hijos.get(1);
-	String valor = (String)n.value;
-	if(izq.value instanceof Boolean){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: resta incorrecta");
-	}
-	if(izq.value instanceof Integer){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: resta incorrecta");
-	}
-	if(izq.value instanceof Double){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: resta incorrecta");
-	}
-	if(izq.value instanceof String && der.value instanceof String) {
-	    n.setValue(valor);
-	} else {
-	    System.out.print("Error de tipos: resta incorrecta");
-	}
+	Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("MENOS", t1, t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoPor n){
-	System.out.print("Nodo Por");
+	System.out.println("Nodo Por");
 	Nodo izq = n.hijos.get(0);
 	Nodo der = n.hijos.get(1);
-	String valor = (String)n.value;
-	if(izq.value instanceof Boolean){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: multiplicacion incorrecta");
-	}
-	if(izq.value instanceof Integer){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: multiplicacion incorrecta");
-	}
-	if(izq.value instanceof Double){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: multiplicacion incorrecta");
-	}
-	if(izq.value instanceof String && der.value instanceof String) {
-	    n.setValue(valor);
-	} else {
-	    System.out.print("Error de tipos: multiplicacion incorrecta");
-	}
+	Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("POR", t1, t2)));
+	System.out.println(n.getTipo());    
     }
 
     @Override
     public void visita(NodoPotencia n){
-	System.out.print("Nodo Potencia");
+	System.out.println("Nodo Potencia");
 	Nodo izq = n.hijos.get(0);
 	Nodo der = n.hijos.get(1);
-	String valor = (String)n.value;
-	if(izq.value instanceof Boolean){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: potencia incorrecta");
-	}
-	if(izq.value instanceof Integer){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: potencia incorrecta");
-	}
-	if(izq.value instanceof Double){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: potencia incorrecta");
-	}
-	if(izq.value instanceof String && der.value instanceof String) {
-	    n.setValue(valor);
-	} else {
-	    System.out.print("Error de tipos: potencia incorrecta");
-	}
+	Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("POTENCIA", t1, t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoDiv n){
-	System.out.print("Nodo Div");
-        Nodo izq = n.hijos.get(0);
+	System.out.println("Nodo Div");
+	Nodo izq = n.hijos.get(0);
 	Nodo der = n.hijos.get(1);
-	String valor = (String)n.value;
-	if(izq.value instanceof Boolean){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: division incorrecta");
-	}
-	if(izq.value instanceof Integer){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: division incorrecta");
-	}
-	if(izq.value instanceof Double){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: division incorrecta");
-	}
-	if(izq.value instanceof String && der.value instanceof String) {
-	    n.setValue(valor);
-	} else {
-	    System.out.print("Error de tipos: division incorrecta");
-	}
+	Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("DIV", t1, t2)));
+	System.out.println(n.getTipo());
+	
     }
 
     @Override
     public void visita(NodoDivEntera n){
 	System.out.print("Nodo DivEntera");
-        Nodo izq = n.hijos.get(0);
+	Nodo izq = n.hijos.get(0);
 	Nodo der = n.hijos.get(1);
-	String valor = (String)n.value;
-	if(izq.value instanceof Boolean){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: division entera incorrecta");
-	}
-	if(izq.value instanceof Integer){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: division entera incorrecta");
-	}
-	if(izq.value instanceof Double){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: division entera incorrecta");
-	}
-	if(izq.value instanceof String && der.value instanceof String) {
-	    n.setValue(valor);
-	} else {
-	    System.out.print("Error de tipos: division entera incorrecta");
-	}
+	Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("DIVENTERA", t1, t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override

@@ -6,7 +6,8 @@ public class Nodo{
     Object value; /* Valor dentro del nodo */
     List<Nodo> hijos; /* Hijos del nodo */
     Nodo padre; /* El papá */
-
+    Tipo tipo; /* Tipo del Nodo */
+    
     public void acepta(Visitante v){
 	v.visita(this);
     }
@@ -16,6 +17,16 @@ public class Nodo{
 	this.hijos = new LinkedList<Nodo>();
     }
 
+    /* Regresa el Tipo del Nodo */
+    public Tipo getTipo(){
+	return this.tipo;
+    }
+
+    /* Establece el Tipo del Nodo */
+    public void setTipo(Tipo tipo){
+	this.tipo = tipo;
+    }
+    
     /* Regresa el valor del nodo */
     @Override
     public String toString(){
@@ -503,8 +514,7 @@ class HojaIdentifier extends Hoja{
     HojaIdentifier(String id){
 	super();
 	value = id;
-    }
-	
+    }	
 }
 
 /* Hoja con elemento entero */
@@ -519,6 +529,7 @@ class HojaEntera extends Hoja
     HojaEntera(Integer v){
 	super();
 	value = v;
+	this.tipo = Tipo.ENTERO;
     }
 }
 /* Hoja con elemento real */
@@ -534,6 +545,7 @@ class HojaReal extends Hoja
     HojaReal(Double v){
 	super();
        	value = v;
+	this.Tipo = Tipo.REAL;
     }
 }
 
@@ -550,6 +562,7 @@ class HojaBoolean extends Hoja
     HojaBoolean(Boolean v){
 	super();
 	value = v;
+	this.tipo = Tipo.BOOLEAN;
     }
 }
 
@@ -566,6 +579,7 @@ class HojaCadena extends Hoja
     HojaCadena(String v){
 	super();
 	value = v;
+	this.tipo = Tipo.CADENA;
     }
 }
 
