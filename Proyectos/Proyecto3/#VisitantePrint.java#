@@ -8,48 +8,7 @@ public class VisitantePrint implements Visitante {
     @Override
     public void visita(NodoMas n){
 	System.out.println("Nodo Mas");
-	Nodo izq = n.hijos.get(0);
-	Nodo der = n.hijos.get(1);
-	String valor = (String)n.value;
-	if(izq.value instanceof Boolean){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: suma incorrecta");
-	}
-	if(izq.value instanceof Integer){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		//System.out.println("Sirve");
-	    //n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: suma incorrecta");
-	}
-	if(izq.value instanceof Double){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: suma incorrecta");
-	}
-	if(izq.value instanceof String && der.value instanceof String) {
-	    n.setValue(valor);
-	} else {
-	    System.out.print("Error de tipos: suma incorrecto");
-	}
+        Nodo 
     }
 
     @Override

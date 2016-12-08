@@ -98,7 +98,13 @@ public class Nodo{
 
 /* Clase NodoMas */
 class NodoMas extends Nodo{
-   /* Regresa '+' */
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
+    /* Regresa '+' */
     @Override
     public String toString(){
 	return "+";
@@ -107,6 +113,12 @@ class NodoMas extends Nodo{
 
 /* Clase NodoMenos */
 class NodoMenos extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '-' */
     @Override
     public String toString(){
@@ -116,6 +128,12 @@ class NodoMenos extends Nodo{
 
 /* Clase NodoPor */
 class NodoPor extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '*' */
     @Override
     public String toString(){
@@ -125,6 +143,12 @@ class NodoPor extends Nodo{
 
 /* Clase NodoPotencia */
 class NodoPotencia extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '**' */
     @Override
     public String toString(){
@@ -134,6 +158,12 @@ class NodoPotencia extends Nodo{
 
 /* Clase NodoDiv */
 class NodoDiv extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '/' */
     @Override
     public String toString(){
@@ -143,6 +173,12 @@ class NodoDiv extends Nodo{
 
 /* Clase NodoDivEntera */
 class NodoDivEntera extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '//' */
     @Override
     public String toString(){
@@ -152,6 +188,12 @@ class NodoDivEntera extends Nodo{
 
 /* Clase NodoModulo */
 class NodoModulo extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '%' */
     @Override
     public String toString(){
@@ -161,6 +203,12 @@ class NodoModulo extends Nodo{
 
 /* Clase NodoEq */
 class NodoEq extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '=' */
     @Override
     public String toString(){
@@ -170,6 +218,12 @@ class NodoEq extends Nodo{
 
 /* Clase NodoMayor */
 class NodoMayor extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '>' */
     @Override
     public String toString(){
@@ -179,6 +233,12 @@ class NodoMayor extends Nodo{
 
 /* Clase NodoMenor */
 class NodoMenor extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '<' */
     @Override
     public String toString(){
@@ -188,6 +248,12 @@ class NodoMenor extends Nodo{
 
 /* Clase NodoMenorIgual */
 class NodoMenorIgual extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '<=' */
     @Override
     public String toString(){
@@ -197,6 +263,12 @@ class NodoMenorIgual extends Nodo{
 
 /* Clase NodoMayorIgual */
 class NodoMayorIgual extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '>=' */
     @Override
     public String toString(){
@@ -206,6 +278,12 @@ class NodoMayorIgual extends Nodo{
 
 /* Clase NodoIgualIgual */
 class NodoIgualIgual extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '==' */
     @Override
     public String toString(){
@@ -215,6 +293,12 @@ class NodoIgualIgual extends Nodo{
 
 /* Clase NodoDistinto */
 class NodoDistinto extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '!=' */
     @Override
     public String toString(){
@@ -224,6 +308,12 @@ class NodoDistinto extends Nodo{
 
 /* Clase NodoDecremento */
 class NodoDecremento extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '-=' */
     @Override
     public String toString(){
@@ -233,6 +323,12 @@ class NodoDecremento extends Nodo{
 
 /* Clase NodoDecremento */
 class NodoIncremento extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa '+=' */
     @Override
     public String toString(){
@@ -242,6 +338,12 @@ class NodoIncremento extends Nodo{
 
 /* Clase NodoAnd*/
 class NodoAnd extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa 'and' */
     @Override
     public String toString(){
@@ -251,6 +353,12 @@ class NodoAnd extends Nodo{
 
 /* Clase NodoOr*/
 class NodoOr extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa 'or' */
     @Override
     public String toString(){
@@ -260,6 +368,12 @@ class NodoOr extends Nodo{
 
 /* Clase NodoNot*/
 class NodoNot extends Nodo{
+    
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa 'not' */
     @Override
     public String toString(){
@@ -269,6 +383,12 @@ class NodoNot extends Nodo{
 
 /* Clase NodoFor*/
 class NodoFor extends Nodo{
+    
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa 'for' */
     @Override
     public String toString(){
@@ -278,6 +398,12 @@ class NodoFor extends Nodo{
 
 /* Clase NodoWhile*/
 class NodoWhile extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa 'while' */
     @Override
     public String toString(){
@@ -287,6 +413,12 @@ class NodoWhile extends Nodo{
 
 /* Clase NodoIf*/
 class NodoIf extends Nodo{
+    
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa 'if' */
     @Override
     public String toString(){
@@ -296,6 +428,12 @@ class NodoIf extends Nodo{
 
 /* Clase NodoElse*/
 class NodoElse extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa 'else' */
     @Override
     public String toString(){
@@ -305,6 +443,12 @@ class NodoElse extends Nodo{
 
 /* Clase NodoElif*/
 class NodoElif extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa 'elif' */
     @Override
     public String toString(){
@@ -314,6 +458,12 @@ class NodoElif extends Nodo{
 
 /* Clase NodoIn*/
 class NodoIn extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa 'in' */
     @Override
     public String toString(){
@@ -323,6 +473,12 @@ class NodoIn extends Nodo{
 
 /* Clase NodoPrint. No sé si esta es necesaria. */
 class NodoPrint extends Nodo{
+
+    @Override
+    public void acepta(Visitante v){
+	v.visita(this);
+    }
+
     /* Regresa 'print' */
     @Override
     public String toString(){

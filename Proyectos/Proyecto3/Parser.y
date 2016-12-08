@@ -17,8 +17,8 @@
  /*Gramática*/
 %%
  /* file_input: (NEWLINE | stmt)* ENDMARKER  */
-file_input: {Nodo n = (Nodo) $$.obj; System.out.println(n == null); System.out.println(n.imprimeSubarbol()); System.out.println("Reconocimiento exitoso");}
-| aux0 {Nodo n = (Nodo) $$.obj; System.out.println(n == null); System.out.println(n.imprimeSubarbol()); System.out.println("Reconocimiento exitoso");} 
+file_input: {Visitante v = new VisitantePrint();Nodo n = (Nodo) $$.obj; System.out.println(n == null); System.out.println(n.imprimeSubarbol());n.acepta(v); System.out.println("Reconocimiento exitoso");}
+| aux0 {Visitante v = new VisitantePrint();Nodo n = (Nodo) $$.obj; System.out.println(n == null); System.out.println(n.imprimeSubarbol());n.acepta(v); System.out.println("Reconocimiento exitoso");} 
 ;
 
 aux0: NEWLINE   
@@ -46,8 +46,8 @@ small_stmt: expr_stmt {$$ = $1;}
 
 /* expr_stmt: test [('='|augassign) test]  */
 expr_stmt: test {$$ = $1;}
-| test IGUAL test {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); $$ = new ParserVal((Object)n);}
-| test augassign test {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(izq); n.meteHijoDer(der); $$ = new ParserVal((Object)n);} 
+| test IGUAL test {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(der); n.meteHijoDer(izq); $$ = new ParserVal((Object)n);}
+| test augassign test {Nodo n = (Nodo) $2.obj; Nodo izq = (Nodo) $1.obj; Nodo der = (Nodo) $3.obj; n.meteHijoIzq(der); n.meteHijoDer(izq); $$ = new ParserVal((Object)n);} 
 ;
 
 /* augassign: '+=' | '-='  */

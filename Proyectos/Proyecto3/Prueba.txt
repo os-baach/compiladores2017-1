@@ -1,10 +1,1 @@
-if 1 and 3 :
-   4
-elif 2 or 1 or 4 :
-   t
-elif not 4 :
-   "d"
-elif 2 < 2 :
-   r
-else :
-   print 4
+True * 2 * False
