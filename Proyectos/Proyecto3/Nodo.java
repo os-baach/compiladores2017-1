@@ -545,7 +545,7 @@ class HojaReal extends Hoja
     HojaReal(Double v){
 	super();
        	value = v;
-	this.Tipo = Tipo.REAL;
+	this.tipo = Tipo.REAL;
     }
 }
 

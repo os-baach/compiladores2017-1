@@ -37,7 +37,8 @@ public class VisitantePrint implements Visitante {
 	Tipo t1 = izq.getTipo();
 	Tipo t2 = der.getTipo();
 	n.setTipo(tabla.lookup(new Tripleta("POR", t1, t2)));
-	System.out.println(n.getTipo());    
+	System.out.println(n.getTipo());	
+	System.out.println("Que pedo Dx");
     }
 
     @Override
@@ -65,7 +66,7 @@ public class VisitantePrint implements Visitante {
 
     @Override
     public void visita(NodoDivEntera n){
-	System.out.print("Nodo DivEntera");
+	System.out.println("Nodo DivEntera");
 	Nodo izq = n.hijos.get(0);
 	Nodo der = n.hijos.get(1);
 	Tipo t1 = izq.getTipo();
@@ -76,176 +77,230 @@ public class VisitantePrint implements Visitante {
 
     @Override
     public void visita(NodoModulo n){
-	System.out.print("Nodo Modulo");
+	System.out.println("Nodo Modulo");
 	Nodo izq = n.hijos.get(0);
 	Nodo der = n.hijos.get(1);
-	String valor = (String)n.value;
-	if(izq.value instanceof Boolean){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: modulo incorrecto");
-	}
-	if(izq.value instanceof Integer){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: modulo incorrecto");
-	}
-	if(izq.value instanceof Double){
-	    if(der.value instanceof Boolean) 
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Integer.parseInt(valor));
-	} else {
-	    if(der.value instanceof String)
-		System.out.print("Error de tipos: modulo incorrecto");
-	}
-	if(izq.value instanceof String && der.value instanceof String) {
-	    n.setValue(valor);
-	} else {
-	    System.out.print("Error de tipos: modulo incorrecto");
-	}
+        Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("MODULO",t1,t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoEq n){
-	System.out.print("Nodo Eq");
+	System.out.println("Nodo Eq");
 	Nodo izq = n.hijos.get(0);
 	Nodo der = n.hijos.get(1);
-	String valor = (String)n.value;
-        if(izq.value instanceof String){
-	    if(der.value instanceof String)
-		n.setValue(valor);
-	    if(der.value instanceof Integer)
-		n.setValue(Integer.parseInt(valor));
-	    if(der.value instanceof Double)
-		n.setValue(Double.parseDouble(valor));
-	    if(der.value instanceof Boolean)
-		n.setValue(Boolean.parseBoolean(valor));
-	} else {
-	    System.out.print("Error de tipos: Asignación incorrecta");
-	}
+        Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("EQ",t1,t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoMayor n){
-	System.out.print("Nodo Mayor");
-	//falta lo de los hijos
+	System.out.println("Nodo Mayor");
+        Nodo izq = n.hijos.get(0);
+	Nodo der = n.hijos.get(1);
+        Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("MAYOR",t1,t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoMenor n){
-	System.out.print("Nodo Menor");
-	//falta lo de los hijos
+	System.out.println("Nodo Menor");
+	Nodo izq = n.hijos.get(0);
+	Nodo der = n.hijos.get(1);
+        Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("MENOR",t1,t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoMenorIgual n){
-	System.out.print("Nodo MenorIgual");
-	//falta lo de los hijos
+	System.out.println("Nodo MenorIgual");
+        Nodo izq = n.hijos.get(0);
+	Nodo der = n.hijos.get(1);
+        Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("MENORIGUAL",t1,t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoMayorIgual n){
-	System.out.print("Nodo MayorIgual");
-	//falta lo de los hijos
+	System.out.println("Nodo MayorIgual");
+        Nodo izq = n.hijos.get(0);
+	Nodo der = n.hijos.get(1);
+        Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("MAYORIGUAL",t1,t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoIgualIgual n){
-	System.out.print("Nodo IgualIgual");
-	//falta lo de los hijos
+	System.out.println("Nodo IgualIgual");
+        Nodo izq = n.hijos.get(0);
+	Nodo der = n.hijos.get(1);
+        Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("IGUALIGUAL",t1,t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoDistinto n){
-	System.out.print("Nodo Distinto");
-	//falta lo de los hijos
+	System.out.println("Nodo Distinto");
+        Nodo izq = n.hijos.get(0);
+	Nodo der = n.hijos.get(1);
+        Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("DISTINTO",t1,t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoDecremento n){
-	System.out.print("Nodo Decremento");
-	//falta lo de los hijos
+	System.out.println("Nodo Decremento");
+	Nodo izq = n.hijos.get(0);
+	Nodo der = n.hijos.get(1);
+        Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("DECREMENTO",t1,t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoIncremento n){
-	System.out.print("Nodo Incremento");
-	//falta lo de los hijos
+	System.out.println("Nodo Incremento");
+	Nodo izq = n.hijos.get(0);
+	Nodo der = n.hijos.get(1);
+        Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("INCREMENTO",t1,t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoAnd n){
-	System.out.print("Nodo And");
-	//falta lo de los hijos
+	System.out.println("Nodo And");
+        Nodo izq = n.hijos.get(0);
+	Nodo der = n.hijos.get(1);
+        Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("AND",t1,t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoOr n){
-	System.out.print("Nodo Or");
-	//falta lo de los hijos
+	System.out.println("Nodo Or");
+        Nodo izq = n.hijos.get(0);
+	Nodo der = n.hijos.get(1);
+        Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("OR",t1,t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoNot n){
-	System.out.print("Nodo Not");
-	//falta lo de los hijos
+	System.out.println("Nodo Not");
+        Nodo hijo = n.hijos.get(0);
+	Tipo t = hijo.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("NOT",t)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoFor n){
-	System.out.print("Nodo For");
-	//falta lo de los hijos
+	System.out.println("Nodo For");
+	//este no importa, no está en la gramática
     }
 
     @Override
     public void visita(NodoWhile n){
-	System.out.print("Nodo While");
-	//falta lo de los hijos
+	System.out.println("Nodo While");
+	Nodo izq = n.hijos.get(0);
+	Nodo der = n.hijos.get(1);
+        Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("WHILE",t1,t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoIf n){
-	System.out.print("Nodo If");
-	//falta lo de los hijos
+	System.out.println("Nodo If"); 
+	    Nodo fst = n.hijos.get(0);
+	    Nodo snd = n.hijos.get(1);
+	    Nodo thd = n.hijos.get(2);
+	    Nodo fhd = n.hijos.get(3);
+	    Tipo t1 = fst.getTipo();
+	    Tipo t2 = snd.getTipo();
+	    Tipo t3 = thd.getTipo();
+	    Tipo t4 = fhd.getTipo();
+	    if(n.hijos.size() == 2) {
+	    n.setTipo(tabla.lookup(new Tripleta("IF",t1,t2)));
+	    System.out.println(n.getTipo());
+	    } else if(n.hijos.size() == 3) {
+		n.setTipo(tabla.lookup(new Tripleta("IF",t1,t2,t3)));
+		System.out.println(n.getTipo());
+	    } else if(n.hijos.size() == 4) {
+		n.setTipo(tabla.lookup(new Tripleta("IF",t1,t2,t3,t4)));
+		System.out.println(n.getTipo());
+	    }
     }
 
     @Override
     public void visita(NodoElse n){
-	System.out.print("Nodo Else");
-	//falta lo de los hijos
+	System.out.println("Nodo Else");
+        Nodo hijo = n.hijos.get(0);
+	Tipo t = hijo.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("ELSE",t)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoElif n){
-	System.out.print("Nodo Elif");
-	//falta lo de los hijos
+	System.out.println("Nodo Elif");
+	Nodo fst = n.hijos.get(0);
+	Nodo snd = n.hijos.get(1);
+	Nodo thd = n.hijos.get(2);
+	Tipo t1 = fst.getTipo();
+	Tipo t2 = snd.getTipo();
+	Tipo t3 = thd.getTipo();
+	if(n.hijos.size() == 2) {
+	    n.setTipo(tabla.lookup(new Tripleta("ELIF",t1,t2)));
+	    System.out.println(n.getTipo());
+	} else if(n.hijos.size() == 3) {
+	    n.setTipo(tabla.lookup(new Tripleta("IF",t1,t2,t3)));
+	    System.out.println(n.getTipo());
+	}
     }
 
     @Override
     public void visita(NodoIn n){
-	System.out.print("Nodo In");
-	//falta lo de los hijos
+	System.out.println("Nodo In");
+	Nodo izq = n.hijos.get(0);
+	Nodo der = n.hijos.get(1);
+        Tipo t1 = izq.getTipo();
+	Tipo t2 = der.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("IN",t1,t2)));
+	System.out.println(n.getTipo());
     }
 
     @Override
     public void visita(NodoPrint n){
-	System.out.print("Nodo Print");
-	//falta lo de los hijos
+	System.out.println("Nodo Print");
+	Nodo hijo = n.hijos.get(0);
+	Tipo t = hijo.getTipo();
+	n.setTipo(tabla.lookup(new Tripleta("PRINT",t)));
+	System.out.println(n.getTipo());
     }
     
     @Override

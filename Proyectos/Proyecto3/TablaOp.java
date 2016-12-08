@@ -12,7 +12,7 @@ public class TablaOp{
 	this.tabla.put(new Tripleta("MAS", Tipo.BOOLEAN, Tipo.CADENA), Tipo.ERROR);
 	this.tabla.put(new Tripleta("MAS", Tipo.ENTERO, Tipo.BOOLEAN), Tipo.ENTERO);
 	this.tabla.put(new Tripleta("MAS", Tipo.REAL, Tipo.BOOLEAN), Tipo.REAL);
-	this.tabla.put(new Tripleta("MAS", Tipo.STRING, Tipo.BOOLEAN), Tipo.ERROR);
+	this.tabla.put(new Tripleta("MAS", Tipo.CADENA, Tipo.BOOLEAN), Tipo.ERROR);
 	this.tabla.put(new Tripleta("MAS", Tipo.ENTERO, Tipo.ENTERO), Tipo.ERROR);
 	this.tabla.put(new Tripleta("MAS", Tipo.ENTERO, Tipo.REAL), Tipo.REAL);
 	this.tabla.put(new Tripleta("MAS", Tipo.ENTERO, Tipo.CADENA), Tipo.ERROR);
@@ -29,7 +29,7 @@ public class TablaOp{
 	this.tabla.put(new Tripleta("MENOS", Tipo.BOOLEAN, Tipo.CADENA), Tipo.ERROR);
 	this.tabla.put(new Tripleta("MENOS", Tipo.ENTERO, Tipo.BOOLEAN), Tipo.ENTERO);
 	this.tabla.put(new Tripleta("MENOS", Tipo.REAL, Tipo.BOOLEAN), Tipo.REAL);
-	this.tabla.put(new Tripleta("MENOS", Tipo.STRING, Tipo.BOOLEAN), Tipo.ERROR);
+	this.tabla.put(new Tripleta("MENOS", Tipo.CADENA, Tipo.BOOLEAN), Tipo.ERROR);
 	this.tabla.put(new Tripleta("MENOS", Tipo.ENTERO, Tipo.ENTERO), Tipo.ERROR);
 	this.tabla.put(new Tripleta("MENOS", Tipo.ENTERO, Tipo.REAL), Tipo.REAL);
 	this.tabla.put(new Tripleta("MENOS", Tipo.ENTERO, Tipo.CADENA), Tipo.ERROR);
@@ -46,7 +46,7 @@ public class TablaOp{
 	this.tabla.put(new Tripleta("POR", Tipo.BOOLEAN, Tipo.CADENA), Tipo.ERROR);
 	this.tabla.put(new Tripleta("POR", Tipo.ENTERO, Tipo.BOOLEAN), Tipo.ENTERO);
 	this.tabla.put(new Tripleta("POR", Tipo.REAL, Tipo.BOOLEAN), Tipo.REAL);
-	this.tabla.put(new Tripleta("POR", Tipo.STRING, Tipo.BOOLEAN), Tipo.ERROR);
+	this.tabla.put(new Tripleta("POR", Tipo.CADENA, Tipo.BOOLEAN), Tipo.ERROR);
 	this.tabla.put(new Tripleta("POR", Tipo.ENTERO, Tipo.ENTERO), Tipo.ERROR);
 	this.tabla.put(new Tripleta("POR", Tipo.ENTERO, Tipo.REAL), Tipo.REAL);
 	this.tabla.put(new Tripleta("POR", Tipo.ENTERO, Tipo.CADENA), Tipo.ERROR);
@@ -63,7 +63,7 @@ public class TablaOp{
 	this.tabla.put(new Tripleta("POTENCIA", Tipo.BOOLEAN, Tipo.CADENA), Tipo.ERROR);
 	this.tabla.put(new Tripleta("POTENCIA", Tipo.ENTERO, Tipo.BOOLEAN), Tipo.ENTERO);
 	this.tabla.put(new Tripleta("POTENCIA", Tipo.REAL, Tipo.BOOLEAN), Tipo.REAL);
-	this.tabla.put(new Tripleta("POTENCIA", Tipo.STRING, Tipo.BOOLEAN), Tipo.ERROR);
+	this.tabla.put(new Tripleta("POTENCIA", Tipo.CADENA, Tipo.BOOLEAN), Tipo.ERROR);
 	this.tabla.put(new Tripleta("POTENCIA", Tipo.ENTERO, Tipo.ENTERO), Tipo.ERROR);
 	this.tabla.put(new Tripleta("POTENCIA", Tipo.ENTERO, Tipo.REAL), Tipo.REAL);
 	this.tabla.put(new Tripleta("POTENCIA", Tipo.ENTERO, Tipo.CADENA), Tipo.ERROR);
@@ -81,7 +81,7 @@ public class TablaOp{
 	this.tabla.put(new Tripleta("DIV", Tipo.BOOLEAN, Tipo.CADENA), Tipo.ERROR);
 	this.tabla.put(new Tripleta("DIV", Tipo.ENTERO, Tipo.BOOLEAN), Tipo.ENTERO);
 	this.tabla.put(new Tripleta("DIV", Tipo.REAL, Tipo.BOOLEAN), Tipo.REAL);
-	this.tabla.put(new Tripleta("DIV", Tipo.STRING, Tipo.BOOLEAN), Tipo.ERROR);
+	this.tabla.put(new Tripleta("DIV", Tipo.CADENA, Tipo.BOOLEAN), Tipo.ERROR);
 	this.tabla.put(new Tripleta("DIV", Tipo.ENTERO, Tipo.ENTERO), Tipo.ERROR);
 	this.tabla.put(new Tripleta("DIV", Tipo.ENTERO, Tipo.REAL), Tipo.REAL);
 	this.tabla.put(new Tripleta("DIV", Tipo.ENTERO, Tipo.CADENA), Tipo.ERROR);
@@ -99,7 +99,7 @@ public class TablaOp{
 	this.tabla.put(new Tripleta("DIVENTERA", Tipo.BOOLEAN, Tipo.CADENA), Tipo.ERROR);
 	this.tabla.put(new Tripleta("DIVENTERA", Tipo.ENTERO, Tipo.BOOLEAN), Tipo.ENTERO);
 	this.tabla.put(new Tripleta("DIVENTERA", Tipo.REAL, Tipo.BOOLEAN), Tipo.REAL);
-	this.tabla.put(new Tripleta("DIVENTERA", Tipo.STRING, Tipo.BOOLEAN), Tipo.ERROR);
+	this.tabla.put(new Tripleta("DIVENTERA", Tipo.CADENA, Tipo.BOOLEAN), Tipo.ERROR);
 	this.tabla.put(new Tripleta("DIVENTERA", Tipo.ENTERO, Tipo.ENTERO), Tipo.ERROR);
 	this.tabla.put(new Tripleta("DIVENTERA", Tipo.ENTERO, Tipo.REAL), Tipo.REAL);
 	this.tabla.put(new Tripleta("DIVENTERA", Tipo.ENTERO, Tipo.CADENA), Tipo.ERROR);
