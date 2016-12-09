@@ -4,7 +4,9 @@ public class VisitantePrint implements Visitante {
 
     @Override
     public void visita(Nodo n){
-	System.out.print("Nodo Genérico");
+	if(n instanceof NodoMas){
+	    visita((NodoMas)n);
+	}
     }
 
     @Override
@@ -224,8 +226,9 @@ public class VisitantePrint implements Visitante {
     @Override
     public void visita(NodoWhile n){
 	System.out.println("Nodo While");
-	Nodo izq = n.hijos.get(0);
-	Nodo der = n.hijos.get(1);
+	Nodo izq = n.hijos.get(1);
+	Nodo der = n.hijos.get(0);
+	visita(izq);
         Tipo t1 = izq.getTipo();
 	Tipo t2 = der.getTipo();
 	n.setTipo(tabla.lookup(new Tripleta("WHILE",t1,t2)));
@@ -236,26 +239,26 @@ public class VisitantePrint implements Visitante {
     public void visita(NodoIf n){
 	System.out.println("Nodo If"); 
 	if(n.hijos.size() == 2) {
-	    Nodo fst = n.hijos.get(0);
-	    Nodo snd = n.hijos.get(1);
+	    Nodo fst = n.hijos.get(1);
+	    Nodo snd = n.hijos.get(0);
 	    Tipo t1 = fst.getTipo();
 	    Tipo t2 = snd.getTipo();
 	    n.setTipo(tabla.lookup(new Tripleta("IF",t1,t2)));
 	    System.out.println(n.getTipo());
 	} else if(n.hijos.size() == 3) {
-	    Nodo fst = n.hijos.get(0);
+	    Nodo fst = n.hijos.get(2);
 	    Nodo snd = n.hijos.get(1);
-	    Nodo thd = n.hijos.get(2);
+	    Nodo thd = n.hijos.get(0);
 	    Tipo t1 = fst.getTipo();
 	    Tipo t2 = snd.getTipo();
 	    Tipo t3 = thd.getTipo();
 	    n.setTipo(tabla.lookup(new Tripleta("IF",t1,t2,t3)));
 	    System.out.println(n.getTipo());
 	} else if(n.hijos.size() == 4) {
-	    Nodo fst = n.hijos.get(0);
-	    Nodo snd = n.hijos.get(1);
-	    Nodo thd = n.hijos.get(2);
-	    Nodo fhd = n.hijos.get(3);
+	    Nodo fst = n.hijos.get(3);
+	    Nodo snd = n.hijos.get(2);
+	    Nodo thd = n.hijos.get(1);
+	    Nodo fhd = n.hijos.get(0);
 	    Tipo t1 = fst.getTipo();
 	    Tipo t2 = snd.getTipo();
 	    Tipo t3 = thd.getTipo();
@@ -278,16 +281,16 @@ public class VisitantePrint implements Visitante {
     public void visita(NodoElif n){
 	System.out.println("Nodo Elif");
 	if(n.hijos.size() == 2) {
-	    Nodo fst = n.hijos.get(0);
-	    Nodo snd = n.hijos.get(1);
+	    Nodo fst = n.hijos.get(1);
+	    Nodo snd = n.hijos.get(0);
 	    Tipo t1 = fst.getTipo();
 	    Tipo t2 = snd.getTipo();
 	    n.setTipo(tabla.lookup(new Tripleta("ELIF",t1,t2)));
 	    System.out.println(n.getTipo());
 	} else if(n.hijos.size() == 3) {
-	    Nodo fst = n.hijos.get(0);
+	    Nodo fst = n.hijos.get(2);
 	    Nodo snd = n.hijos.get(1);
-	    Nodo thd = n.hijos.get(2);
+	    Nodo thd = n.hijos.get(0);
 	    Tipo t1 = fst.getTipo();
 	    Tipo t2 = snd.getTipo();
 	    Tipo t3 = thd.getTipo();
@@ -299,8 +302,8 @@ public class VisitantePrint implements Visitante {
     @Override
     public void visita(NodoIn n){
 	System.out.println("Nodo In");
-	Nodo izq = n.hijos.get(0);
-	Nodo der = n.hijos.get(1);
+	Nodo izq = n.hijos.get(1);
+	Nodo der = n.hijos.get(0);
         Tipo t1 = izq.getTipo();
 	Tipo t2 = der.getTipo();
 	n.setTipo(tabla.lookup(new Tripleta("IN",t1,t2)));
