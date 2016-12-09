@@ -1,4 +1,3 @@
-if x :
-   x
-else :
-   y
+while 4 > 5 and True or 3.4 :
+      while not False % 6 :
+      	    print 4 ** 3 * 5 + 6

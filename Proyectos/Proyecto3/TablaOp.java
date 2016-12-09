@@ -136,7 +136,7 @@ public class TablaOp{
 	this.tabla.put(new Tripleta("EQ", Tipo.CADENA, Tipo.BOOLEAN), Tipo.BOOLEAN);
 	this.tabla.put(new Tripleta("EQ", Tipo.ENTERO, Tipo.ENTERO), Tipo.ERROR);
 	this.tabla.put(new Tripleta("EQ", Tipo.ENTERO, Tipo.REAL), Tipo.ERROR);
-	this.tabla.put(new Tripleta("EQ", Tipo.ENTERO, Tipo.CADENA), Tipo.ERROR);
+	this.tabla.put(new Tripleta("EQ", Tipo.ENTERO, Tipo.CADENA), Tipo.ENTERO);
 	this.tabla.put(new Tripleta("EQ", Tipo.REAL, Tipo.ENTERO), Tipo.ERROR);
 	this.tabla.put(new Tripleta("EQ", Tipo.CADENA, Tipo.ENTERO), Tipo.ENTERO);
 	this.tabla.put(new Tripleta("EQ", Tipo.REAL, Tipo.REAL), Tipo.ERROR);
@@ -280,41 +280,39 @@ public class TablaOp{
 	this.tabla.put(new Tripleta("INCREMENTO", Tipo.CADENA, Tipo.REAL), Tipo.ERROR);
 	this.tabla.put(new Tripleta("INCREMENTO", Tipo.CADENA, Tipo.CADENA), Tipo.ERROR);
 	/* Operación AND */
-	if(Tipo.BOOLEAN.equals("True") ){
 	this.tabla.put(new Tripleta("AND", Tipo.BOOLEAN, Tipo.BOOLEAN), Tipo.BOOLEAN);
-	this.tabla.put(new Tripleta("AND", Tipo.BOOLEAN, Tipo.ENTERO), Tipo.ENTERO);
-        this.tabla.put(new Tripleta("AND", Tipo.BOOLEAN, Tipo.REAL), Tipo.REAL);
-	this.tabla.put(new Tripleta("AND", Tipo.BOOLEAN, Tipo.CADENA), Tipo.CADENA);
-	this.tabla.put(new Tripleta("AND", Tipo.ENTERO, Tipo.BOOLEAN), Tipo.ENTERO);
-        this.tabla.put(new Tripleta("AND", Tipo.REAL, Tipo.BOOLEAN), Tipo.REAL);
-        this.tabla.put(new Tripleta("AND", Tipo.CADENA, Tipo.BOOLEAN), Tipo.REAL);
-	} else if(Tipo.BOOLEAN.equals("False")) {
-	    this.tabla.put(new Tripleta("AND", Tipo.BOOLEAN, Tipo.BOOLEAN), Tipo.BOOLEAN);
-	    this.tabla.put(new Tripleta("AND", Tipo.BOOLEAN, Tipo.ENTERO), Tipo.BOOLEAN);
-	    this.tabla.put(new Tripleta("AND", Tipo.BOOLEAN, Tipo.REAL), Tipo.BOOLEAN);
-	    this.tabla.put(new Tripleta("AND", Tipo.BOOLEAN, Tipo.CADENA), Tipo.BOOLEAN);
-	    this.tabla.put(new Tripleta("AND", Tipo.ENTERO, Tipo.BOOLEAN), Tipo.BOOLEAN);
-	    this.tabla.put(new Tripleta("AND", Tipo.REAL, Tipo.BOOLEAN), Tipo.BOOLEAN);
-	    this.tabla.put(new Tripleta("AND", Tipo.CADENA, Tipo.BOOLEAN), Tipo.BOOLEAN);
-	}
-	/* Operación OR */
-	if(Tipo.BOOLEAN.equals("False") ){
+	this.tabla.put(new Tripleta("AND", Tipo.BOOLEAN, Tipo.ENTERO), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("AND", Tipo.BOOLEAN, Tipo.REAL), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("AND", Tipo.BOOLEAN, Tipo.CADENA), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("AND", Tipo.ENTERO, Tipo.BOOLEAN), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("AND", Tipo.ENTERO, Tipo.CADENA), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("AND", Tipo.ENTERO, Tipo.ENTERO), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("AND", Tipo.ENTERO, Tipo.REAL), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("AND", Tipo.REAL, Tipo.BOOLEAN), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("AND", Tipo.REAL, Tipo.ENTERO), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("AND", Tipo.REAL, Tipo.REAL), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("AND", Tipo.REAL, Tipo.CADENA), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("AND", Tipo.CADENA, Tipo.BOOLEAN), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("AND", Tipo.CADENA, Tipo.ENTERO), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("AND", Tipo.CADENA, Tipo.REAL), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("AND", Tipo.CADENA, Tipo.CADENA), Tipo.BOOLEAN);
+        /* Operación OR */
 	this.tabla.put(new Tripleta("OR", Tipo.BOOLEAN, Tipo.BOOLEAN), Tipo.BOOLEAN);
-	this.tabla.put(new Tripleta("OR", Tipo.BOOLEAN, Tipo.ENTERO), Tipo.ENTERO);
-        this.tabla.put(new Tripleta("OR", Tipo.BOOLEAN, Tipo.REAL), Tipo.REAL);
-	this.tabla.put(new Tripleta("OR", Tipo.BOOLEAN, Tipo.CADENA), Tipo.CADENA);
-	this.tabla.put(new Tripleta("OR", Tipo.ENTERO, Tipo.BOOLEAN), Tipo.ENTERO);
-        this.tabla.put(new Tripleta("OR", Tipo.REAL, Tipo.BOOLEAN), Tipo.REAL);
-        this.tabla.put(new Tripleta("OR", Tipo.CADENA, Tipo.BOOLEAN), Tipo.REAL);
-	} else if(Tipo.BOOLEAN.equals("True")) {
-	    this.tabla.put(new Tripleta("OR", Tipo.BOOLEAN, Tipo.BOOLEAN), Tipo.BOOLEAN);
-	    this.tabla.put(new Tripleta("OR", Tipo.BOOLEAN, Tipo.ENTERO), Tipo.BOOLEAN);
-	    this.tabla.put(new Tripleta("OR", Tipo.BOOLEAN, Tipo.REAL), Tipo.BOOLEAN);
-	    this.tabla.put(new Tripleta("OR", Tipo.BOOLEAN, Tipo.CADENA), Tipo.BOOLEAN);
-	    this.tabla.put(new Tripleta("OR", Tipo.ENTERO, Tipo.BOOLEAN), Tipo.BOOLEAN);
-	    this.tabla.put(new Tripleta("OR", Tipo.REAL, Tipo.BOOLEAN), Tipo.BOOLEAN);
-	    this.tabla.put(new Tripleta("OR", Tipo.CADENA, Tipo.BOOLEAN), Tipo.BOOLEAN);
-	}
+	this.tabla.put(new Tripleta("OR", Tipo.BOOLEAN, Tipo.ENTERO), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("OR", Tipo.BOOLEAN, Tipo.REAL), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("OR", Tipo.BOOLEAN, Tipo.CADENA), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("OR", Tipo.ENTERO, Tipo.BOOLEAN), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("OR", Tipo.ENTERO, Tipo.CADENA), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("OR", Tipo.ENTERO, Tipo.ENTERO), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("OR", Tipo.ENTERO, Tipo.REAL), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("OR", Tipo.REAL, Tipo.BOOLEAN), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("OR", Tipo.REAL, Tipo.ENTERO), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("OR", Tipo.REAL, Tipo.REAL), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("OR", Tipo.REAL, Tipo.CADENA), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("OR", Tipo.CADENA, Tipo.BOOLEAN), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("OR", Tipo.CADENA, Tipo.ENTERO), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("OR", Tipo.CADENA, Tipo.REAL), Tipo.BOOLEAN);
+	this.tabla.put(new Tripleta("OR", Tipo.CADENA, Tipo.CADENA), Tipo.BOOLEAN);
 	/* Operación NOT */
 	this.tabla.put(new Tripleta("NOT",Tipo.BOOLEAN),Tipo.BOOLEAN);
 	this.tabla.put(new Tripleta("NOT",Tipo.ENTERO),Tipo.BOOLEAN);
@@ -338,6 +336,7 @@ public class TablaOp{
 	this.tabla.put(new Tripleta("WHILE", Tipo.CADENA, Tipo.REAL), Tipo.REAL);
 	this.tabla.put(new Tripleta("WHILE", Tipo.CADENA, Tipo.CADENA), Tipo.CADENA);
 	/* Operación IF */
+	/* 2 hijos */
 	this.tabla.put(new Tripleta("IF", Tipo.BOOLEAN, Tipo.BOOLEAN), Tipo.BOOLEAN);
 	this.tabla.put(new Tripleta("IF", Tipo.BOOLEAN, Tipo.ENTERO), Tipo.ENTERO);
 	this.tabla.put(new Tripleta("IF", Tipo.BOOLEAN, Tipo.REAL), Tipo.REAL);
@@ -354,7 +353,9 @@ public class TablaOp{
 	this.tabla.put(new Tripleta("IF", Tipo.CADENA, Tipo.ENTERO), Tipo.ENTERO);
 	this.tabla.put(new Tripleta("IF", Tipo.CADENA, Tipo.REAL), Tipo.REAL);
 	this.tabla.put(new Tripleta("IF", Tipo.CADENA, Tipo.CADENA), Tipo.CADENA);
+	/* 3 hijos debemos verificar cuando la condición es True o False :s (son demasiados)*/
 	this.tabla.put(new Tripleta("IF", Tipo.BOOLEAN, Tipo.BOOLEAN, Tipo.BOOLEAN), Tipo.BOOLEAN);
+	/* 4 hijos lo mismo pero MUCHO MAS X.X*/
 	/* Operación ELSE */
 	this.tabla.put(new Tripleta("ELSE",Tipo.BOOLEAN),Tipo.BOOLEAN);
 	this.tabla.put(new Tripleta("ELSE",Tipo.ENTERO),Tipo.ENTERO);
