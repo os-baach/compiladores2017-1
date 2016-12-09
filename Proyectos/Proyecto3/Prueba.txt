@@ -1,1 +1,4 @@
-print True
+if x :
+   x
+else :
+   y

@@ -79,5 +79,9 @@ public class Tripleta{
 	    hash = hash * 31 + this.tipo4.hashCode();
 	return hash;
     }
+
+    public Tipo getFst(String operacion, Tipo t1, Tipo t2, Tipo t3){
+	return t1;
+    }
     
 }

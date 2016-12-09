@@ -514,6 +514,7 @@ class HojaIdentifier extends Hoja{
     HojaIdentifier(String id){
 	super();
 	value = id;
+	this.tipo = Tipo.CADENA;
     }	
 }
 
