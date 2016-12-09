@@ -358,4 +358,9 @@ public class TablaOp{
     public Tipo lookup(Tripleta t){
 	return this.tabla.get(t);
     }
+
+    public static void main(String args[]){
+	TablaOp t = new TablaOp();
+	System.out.println(t.lookup(new Tripleta("MAS", Tipo.ENTERO, Tipo.ENTERO)));
+    }
 }
