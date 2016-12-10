@@ -515,7 +515,7 @@ class HojaIdentifier extends Hoja{
 	super();
 	value = id;
 	this.tipo = Tipo.CADENA;
-    }	
+    }
 }
 
 /* Hoja con elemento entero */

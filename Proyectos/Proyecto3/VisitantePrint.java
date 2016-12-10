@@ -1,7 +1,8 @@
 public class VisitantePrint implements Visitante {
 
     private TablaOp tabla = new TablaOp();
-
+    private TablaS tablaS = new TablaS();
+    
     @Override
     public void visita(Nodo n){
 	if(n instanceof NodoMas){
@@ -187,12 +188,20 @@ public class VisitantePrint implements Visitante {
 
     @Override
     public void visita(NodoEq n){
-	Nodo izq = n.hijos.get(0);
-	Nodo der = n.hijos.get(1);
-	visita(izq);
-	visita(der);
-        Tipo t1 = izq.getTipo();
-	Tipo t2 = der.getTipo();
+	Nodo izq = n.hijos.get(1);
+	Nodo der = n.hijos.get(0);
+	Tipo t1,t2; /* Tipos de los nodos a igualar */
+	if(izq instanceof HojaIdentifier){    
+	    visita(der);
+	    t2 = der.getTipo();
+	    tablaS.insert((String)izq.getValue(), t2);
+	    t1 = t2;
+	}else{
+	    visita(izq);
+	    visita(der);
+	    t1 = izq.getTipo();
+	    t2 = der.getTipo();
+	}
 	n.setTipo(tabla.lookup(new Tripleta("EQ",t1,t2)));
 	System.out.println("Nodo Eq:" + n.getTipo());
     }
@@ -443,7 +452,14 @@ public class VisitantePrint implements Visitante {
     
     @Override
     public void visita(HojaIdentifier h){
-	System.out.println("Hoja Identificador: " +  h.value + " " + h.getTipo());
+	Tipo t = tablaS.lookup((String)h.value);
+	if(t == null){
+	    System.err.println("Variable no inicializada");
+	    System.exit(-1);
+	}else{
+	    h.setTipo(t);
+	    System.out.println("Hoja Identificador: " +  h.value + " " + h.getTipo());
+	}
     }
 
     @Override
